@@ -1,0 +1,59 @@
+.notify-bar {
+  background: var(--main-blue);
+  display: flex;
+  padding: 5px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  max-height: 45px;
+}
+.notify-bar marquee {
+  line-height: 40px;
+}
+.blink {
+  animation: blink-animation 1s steps(2, start) infinite;
+  -webkit-animation: blink-animation 1s steps(2, start) infinite;
+  transition: 0.35s;
+}
+@keyframes blink-animation {
+  to {
+    background: rgb(192, 192, 192);
+    color: rgb(17, 17, 17);
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    background: rgb(255, 255, 255);
+  }
+}
+.type {
+  display: inline-block;
+  color: rgb(17, 17, 17);
+  font-size: 20px;
+  line-height: 14px;
+  padding: 6px;
+  border-radius: 2px;
+  background: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.notify-text {
+  color: #fff;
+  width: 88%;
+  margin: 0 10px;
+  border-left: 2px solid;
+  line-height: 55px;
+}
+.readmore {
+  background: #e16103;
+  color: #fff;
+  transition: 0.5s;
+  box-shadow: inset 0px 0 #ccc;
+  margin-bottom: 10px;
+  font-size: 14px;
+  height: fit-content;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.readmore:hover {
+  box-shadow: inset 110px 0 0 0 #102a83;
+  border: 1px solid #102a83;
+}

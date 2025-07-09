@@ -1,0 +1,2 @@
+E:\Work\Practice\bvbTest\bvbtest.client\obj\Release\bvbtest.client.esproj.CoreCompileInputs.cache
+E:\Work\BVBSchool\FirstLook\bvbtest.client\obj\Release\bvbtest.client.esproj.CoreCompileInputs.cache

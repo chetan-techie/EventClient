@@ -1,0 +1,58 @@
+﻿:host {
+  max-width: 1280px;
+  text-align: center;
+}
+
+th,
+td {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+table {
+  margin: 0 auto;
+}
+
+/* scroll watcher */
+.scroll-watcher {
+  height: 5px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background-color: #041e42;
+  width: 100%;
+  scale: 0 1;
+  transform-origin: left;
+  animation: scroll-watcher linear;
+  animation-timeline: scroll();
+}
+
+/* animations keyframes */
+@keyframes scroll-watcher {
+  to {
+    scale: 1 1;
+  }
+}
+
+.go-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: var(--main-blue);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  display: none;
+}
+.go-to-top:hover {
+  background-color: var(--orange);
+}
+.go-to-top .fa {
+  font-size: 26px;
+}
+.go-to-top.show {
+  display: block;
+}

@@ -1,0 +1,29 @@
+.page-title {
+  text-align: left;
+  font-weight: bold;
+  color: #e16103;
+  text-transform: uppercase;
+}
+.sub-title {
+  text-align: left;
+  text-transform: uppercase;
+}
+.container-block p {
+  text-align: justify !important;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 1px;
+}
+section {
+  margin-bottom: 20px;
+}
+section img {
+  max-width: 350px;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+}
+section p {
+  background: #f5f5f5;
+  padding: 20px;
+  height: 100%;
+}

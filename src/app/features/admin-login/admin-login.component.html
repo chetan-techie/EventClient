@@ -1,0 +1,68 @@
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="user_card">
+      <div class="d-flex justify-content-center">
+        <div class="brand_logo_container">
+          <img src="../../../assets/logo.png" class="brand_logo" alt="Logo" />
+        </div>
+      </div>
+      <div class="d-flex justify-content-center form_container">
+        <form [formGroup]="formData" (ngSubmit)="dialOTP()">
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <span class="input-group-text"
+                ><i class="fa fa-envelope" aria-hidden="true"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              name=""
+              class="form-control input_user"
+              value=""
+              placeholder="Admin emailId"
+              formControlName="email"
+              [class.disabled]="enableOTPField"
+            />
+          </div>
+          <div class="input-group mb-5" *ngIf="enableOTPField">
+            <div class="input-group-append">
+              <span class="input-group-text"
+                ><i class="fa fa-key" aria-hidden="true"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              name=""
+              class="form-control input_pass"
+              value=""
+              placeholder="Enter OTP here"
+              formControlName="password"
+            />
+          </div>
+          <div class="d-flex justify-content-center mt-5 login_container">
+            <button
+              type="submit"
+              name="button"
+              class="btn login_btn"
+              [disabled]="!formData.valid"
+              [hidden]="loginWait"
+            >
+              {{ enableOTPField ? "LOGIN" : "GENERATE OTP" }}
+            </button>
+          </div>
+          <div class="clear alert alert-warning mt-2" [hidden]="!loginWait">
+            Please wait while email is validated.
+          </div>
+
+          <div
+            *ngIf="formData.errors"
+            class="alert alert-danger mt-2 p-1"
+            role="alert"
+          >
+            {{ formData.errors["requestOTP"] }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

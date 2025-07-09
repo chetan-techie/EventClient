@@ -1,0 +1,48 @@
+.p-inner h3 b {
+  color: #0a2f63;
+  text-transform: uppercase;
+}
+.s-media {
+  box-shadow: 2px 2px 8px #ccc;
+  margin: 0 5px;
+  margin-top: 10px;
+  height: 50px;
+  width: 50px;
+  background: #e16103;
+  border-radius: 40px;
+  line-height: 50px;
+  font-size: 23px;
+  color: #fff;
+}
+.s-media:hover {
+  animation-name: jumpIn;
+  animation-duration: 300ms;
+  animation-delay: 50ms;
+  cursor: pointer;
+}
+
+@keyframes jumpIn {
+  0% {
+    width: 50px;
+    height: 50px;
+    background: #0a2f63;
+  }
+  50% {
+    margin-top: 5px;
+    width: 55px;
+    height: 55px;
+    background: #0a2f63;
+  }
+  100% {
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    background: #0a2f63;
+  }
+}
+
+.divider {
+  width: 180px;
+  border-top: 2px dashed #e16103;
+  margin: 32px 8px;
+}

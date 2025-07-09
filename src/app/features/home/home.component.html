@@ -1,0 +1,525 @@
+<app-announcement></app-announcement>
+<section class="carousel d-flex">
+  <div class="welcmeMsg">
+    <h1 class="display-1 font-weight-bold">Bhavan’s Education</h1>
+    <p class="title pl-4">
+      Welcome to Bharatiya Vidya Bhavan, a school that is committed to promote
+      Indian Values through education and prepare students for the challenges of
+      the 21st century.
+    </p>
+  </div>
+
+  <ngb-carousel style="opacity: 0.9">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="carousel[0]" class="img-fluid" alt="Random first slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="carousel[1]" class="img-fluid" alt="Random second slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="carousel[2]" class="img-fluid" alt="Random third slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="carousel[3]" class="img-fluid" alt="Random third slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="carousel[4]" class="img-fluid" alt="Random third slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="carousel[5]" class="img-fluid" alt="Random third slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="carousel[6]" class="img-fluid" alt="Random third slide" />
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</section>
+
+<!-- Our Founder -->
+<div class="container">
+  <div class="row founder-container">
+    <div class="col-lg-7 mb-4">
+      <div class="">
+        <h2 class="bottom-line">Our Founder</h2>
+        <p>
+          The Bharatiya Vidya Bhavan was founded on Kartik Sud Purnima, Samvat
+          1995 (November 7, 1938) by Kulapati Kanaiyalal Maneklal Munshi.
+        </p>
+        <p class="font-italic">
+          ❝India will once again be acknowledged as the vishwa guru - a
+          superpower that embodies the ideals of vasudhaiva kutumbakam - the
+          global family. ❞
+        </p>
+        <p class="font-italic">
+          "Let noble thoughts come to us from every side."
+        </p>
+        <p class="font-italic">
+          "Harmony of all faiths. Sarva Dharma Sama Bhava."
+        </p>
+        <h5 class="quoteBy">&mdash; KULAPATI K. M. MUNSHI</h5>
+        <button class="btn readmore mt-5" (click)="readMore('/about')">
+          READ MORE
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-5 mb-4">
+      <img
+        src="../../../assets/photos/founder.jpg"
+        class="img-fluid card-type1"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Vision Mission Values -->
+<div class="container">
+  <div class="vision-container">
+    <h2 class="bottom-line">VISION, Mission and values</h2>
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <img src="../../../assets/bg/vision.jpg" class="img-fluid card-type1" />
+      </div>
+      <div class="col-lg-8 mb-4">
+        <p>
+          <b>Vision</b> — To be a leading educational institution that empowers
+          students to become knowledgeable, ethical and compassionate leaders
+          who make a positive impact on the environment.
+        </p>
+        <p>
+          <b>Mission</b> — At Bharatiya Vidya Bhavan, we strive to provide
+          holistic education that nurtures the intellectual, social, emotional,
+          physical and cultural development of our students.
+        </p>
+        <ul>
+          <li class="icon-list-item">
+            <i class="fa fa-check-circle list-icon" aria-hidden="true"></i
+            >Foster a love for learning and spirit of inquiry through rigorous
+            academic curriculum.
+          </li>
+          <li class="icon-list-item">
+            <i class="fa fa-check-circle list-icon" aria-hidden="true"></i
+            >Promote the development of character, values and ethical behaviour.
+          </li>
+          <li class="icon-list-item">
+            <i class="fa fa-check-circle list-icon" aria-hidden="true"></i
+            >Cultivate a sense of social responsibility, cultural awareness,
+            patriotism and global citizenship.
+          </li>
+          <li class="icon-list-item">
+            <i class="fa fa-check-circle list-icon" aria-hidden="true"></i
+            >Provide a safe and supportive environment.
+          </li>
+          <li class="icon-list-item">
+            <i class="fa fa-check-circle list-icon" aria-hidden="true"></i
+            >Prepare students for success in a rapidly changing world.
+          </li>
+        </ul>
+        <p>
+          <b>Values</b> — We believe that values, such as respect for elders,
+          gratitude, compassion and integrity, are essential for the holistic
+          development of our students. We strive to inculcate these values
+          through storytelling and role-play. We also provide our students with
+          an understanding of the teachings of great Indian philosophers, and
+          encourage them to reflect on the relevance of these teachings in their
+          lives.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Introduction of school -->
+<div class="intro-section mt-5 mb-5">
+  <div class="intro-inner">
+    <h1>Introduction to the school</h1>
+    <div class="card-body text-center">
+      <p>
+        Bharatiya Vidya Bhavan School in Vijayanagar Mysuru, is a top player in
+        the category Schools in Mysuru. It was established by Dr. Mathoor
+        Krishnamurthy. Bharatiya Vidya Bhavan, Mysuru, was started on June 1,
+        2003. It runs classes from PRE-KG to Std. X. It is affiliated to
+        Karnataka State Secondary Education Board.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row pb-3">
+    <div class="col-lg-4 mb-4">
+      <div class="gallery">
+        <div class="square-box">
+          <a
+            
+            target="_blank"
+          ></a
+          ><img src="../../../assets/events-thumbnail/thumbnail1.jpg" />
+          <div class="event-container"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 mb-4"></div>
+    <div class="col-lg-4 mb-4"></div>
+  </div> -->
+
+<!-- https://drive.google.com/drive/folders/1FX_9e2NPFn399Rf1mBaEJtXm7Pmw9Zll -->
+
+<!-- Welcome message -->
+<div class="container">
+  <div class="text-center pb-2">
+    <!-- <h1 class="mb-4">Latest Articles From Blog</h1> -->
+    <div class="event-gallery container">
+      <h2 class="bottom-line text-left all-caps">Welcome Message</h2>
+    </div>
+    <div class="row pb-3" #cardContainer>
+      <div class="col-lg-3 mb-4 border-0 shadow-sm">
+        <div class="card mb-2 pt-4">
+          <img
+            class="card-img-top mb-2"
+            src="../../../assets/photos/leaders/Sri K B Ganapathy.jpg"
+            alt=""
+          />
+          <div class="card-body text-center p-4">
+            <h4 class="committeMember">Dr. K. B. Ganapathy</h4>
+            <div class="d-flex justify-content-center mb-3">
+              <small class="mr-3"
+                ><i class="fa fa-user text-primary"></i>Chairman</small
+              >
+            </div>
+            <p>
+              The Bhavans firmly believes that revitalizing ancient values and
+              reintegrating them to suit the changing needs of modern times
+              alone will give people the strength to assimilate the good in the
+              new.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mb-4 border-0 shadow-sm">
+        <div class="card mb-2 pt-4">
+          <img
+            class="card-img-top mb-2"
+            src="../../../assets/photos/leaders/Dr. C. Naganna.jpg"
+            alt="Secretary photo "
+          />
+          <div class="card-body text-center p-4">
+            <h4 class="committeMember">Dr. C. Naganna</h4>
+            <div class="d-flex justify-content-center mb-3">
+              <small class="mr-3"
+                ><i class="fa-solid fa-location-dot"></i
+                ><i class="fa fa-user text-primary"></i>Vice-Chairman</small
+              >
+            </div>
+            <p>
+              The main purpose of the Bharatiya Vidya Bhavan is to provide a
+              bridge to span the past, present and future, on the strong
+              foundation of the fundamental values of life.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mb-4 border-0 shadow-sm">
+        <div class="card mb-2 pt-4">
+          <img
+            class="card-img-top mb-2"
+            src="../../../assets/photos/leaders/Sri P.S. Ganapathy.jpg"
+            alt=""
+          />
+          <div class="card-body text-center p-4">
+            <h4 class="committeMember">Sri P. S. Ganapathy</h4>
+            <div class="d-flex justify-content-center mb-3">
+              <small class="mr-3"
+                ><i class="fa fa-user text-primary"></i> Hon. Secretary</small
+              >
+            </div>
+            <p>
+              The Bharatiya Vidya Bhavan believes that there are elements in all
+              cultures that transcend all barriers and knit people together. Our
+              ideal is "Vasudhaiva Kutumbakam"- (The World is one Family) and
+              our motto is “ā no bhadrāḥ kratavo yantu viśvataḥ”- (Let noble
+              thoughts come to us from every side).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mb-4 border-0 shadow-sm">
+        <div class="card mb-2 pt-4">
+          <img
+            class="card-img-top mb-2"
+            src="../../../assets/photos/leaders/Dr. A.T. Bhashyam.jpg"
+            alt=""
+          />
+          <div class="card-body text-center p-4">
+            <h4 class="committeMember">Dr. A. T. Bhashyam</h4>
+            <div class="d-flex justify-content-center mb-3">
+              <small class="mr-3"
+                ><i class="fa fa-user text-primary"></i> Hon. Treasurer</small
+              >
+            </div>
+            <p>
+              The school aims at imparting quality education with its goals set
+              on all–round personality development of its students, equipped
+              with the latest technologies.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container pt-4">
+  <div class="text-center pb-2">
+    <hr />
+    <div class="row pb-3">
+      <div class="col-lg-6 mb-4 card-shadow">
+        <p class="section-title px-5">
+          <span class="px-2">Vision</span>
+        </p>
+
+        <div class="card border-0 shadow-sm mb-2">
+          <div class="card-body bg-light text-center p-4">
+            <p>
+              To be a leading educational institution that empowers students to
+              become knowledgeable, ethical and compassionate leaders who make a
+              positive impact on the environment.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4 card-shadow">
+        <p class="section-title px-5">
+          <span class="px-2">Mission and values</span>
+        </p>
+
+        <div class="card border-0 shadow-sm mb-2">
+          <div class="card-body bg-light text-center p-4">
+            <p>
+              Our school has a rich history of providing quality education to
+              students and helping them to achieve their full potential.
+              Bharatiya Vidya Bhavan was founded in 1938 by Dr. Kanaiyalal
+              Maneklal Munshi, a visionary leader, with the aim of promoting
+              Indian culture and values. The organisation has since grown into a
+              global entity, with 119 branches in India and 9 overseas branches
+              Australia, Canada. Kuwait, Mexico, Portugal, Singapore South
+              Africa, UK and U.S.A.
+            </p>
+            <p>
+              At Bharatiya Vidya Bhavan School, we strive to provide a holistic
+              education that nurtures the intellectual, social, emotional and
+              physical development of our students.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Testimonials -->
+<div class="container testimonial-container">
+  <div class="testimonial pb-2">
+    <h2 class="mb-2 all-caps">Our Testimonial</h2>
+    <p class="mb-1 all-caps">What They Say About Us?</p>
+  </div>
+
+  <div class="d-flex">
+    <div class="row">
+      <div
+        class="what-they-say col-lg-4 mb-4 card-shadow"
+        *ngFor="let testimonial of testimonials"
+      >
+        <div class="quotes open-quotes">
+          <i class="fa fa-quote-left" aria-hidden="true"></i>
+        </div>
+        <div class="wts-msg">
+          {{ testimonial.message }}
+        </div>
+        <div class="close-quotes">
+          <i class="fa fa-quote-right" aria-hidden="true"></i>
+        </div>
+        <div class="d-flex p-detail">
+          <img [src]="testimonial.image" class="profile" />
+          <div class="profile-info">
+            <div class="p-name">{{ testimonial.name }}</div>
+            <div class="p-position">{{ testimonial.designation }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Event Videos -->
+<div class="event-gallery container pt-5">
+  <h2 class="bottom-line text-left all-caps">Event Videos</h2>
+  <div class="row pb-1">
+    <div class="col-lg-4 mb-4">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe
+          class="player"
+          src="https://www.youtube.com/embed/W30MfIh8WUo"
+        ></iframe>
+      </div>
+    </div>
+    <div class="col-lg-4 mb-4">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe
+          class="player"
+          src="https://www.youtube.com/embed/RRMBrkquKY4"
+        ></iframe>
+      </div>
+    </div>
+    <div class="col-lg-4 mb-4">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe
+          class="player"
+          src="https://www.youtube.com/embed/jV4YULzTcKM"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Events Gallery -->
+<div class="event-gallery container pt-5">
+  <h2 class="bottom-line text-left all-caps">Events Gallery</h2>
+
+  <div class="d-flex justify-content-center">
+    <div
+      class="d-flex justify-content-center"
+      *ngIf="!isLoading && events.length === 0"
+    >
+      <p>No events found</p>
+    </div>
+    <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div class="row pb-1 position-relative">
+    <div class="col-lg-4 mb-4" *ngFor="let event of events">
+      <ul class="card-list d-flex">
+        <li class="card-item">
+          <div class="card-link">
+            <a target="_blank" [href]="event.driveUrl">
+              <img
+                [src]="event.imagePath"
+                [alt]="event.name"
+                class="image-fluid card-image"
+              />
+            </a>
+            <div class="img-content">
+              <h2 class="card-title mt-3">{{ event.name }}</h2>
+              <p>{{ event.eventDate | date }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="overlay-button">
+    <button class="btn readmore" (click)="navigateToGallery()">
+      VIEW MORE
+    </button>
+  </div>
+</div>
+<!-- <div class="row pb-1 justify-content-center">
+    <div class="col-lg-4 mb-4">
+      <ul class="card-list d-flex">
+        <li class="card-item">
+          <div class="card-link">
+            <a target="_blank">
+              <img
+                src="../../../assets/events-thumbnail/thumbnail4.jpg"
+                alt=""
+                class="image-fluid card-image"
+              />
+            </a>
+            <div class="img-content">
+              <h2 class="card-title mt-3">Kindergarten-Antyakshari-Winners</h2>
+              <p>{{ "11-09-2024" | date }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div> -->
+
+<div class="event-gallery container pt-5">
+  <h2 class="bottom-line text-left all-caps">Hall of Fame</h2>
+
+  <div class="row pb-3">
+    <div class="col-lg-4 mb-4">
+      <ul class="card-list d-flex">
+        <li class="card-item">
+          <div class="card-link">
+            <a target="_blank">
+              <img
+                src="../../../assets/hallofFame/thumbnail1.jpg"
+                alt=""
+                class="image-fluid card-image"
+              />
+            </a>
+            <div class="img-content">
+              <h2 class="card-title mt-3">Gowrishree S - 9C</h2>
+              <p>Group Level Best Cadet in NCC 3 Kar Battalion</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-lg-4 mb-4">
+      <ul class="card-list d-flex">
+        <li class="card-item">
+          <div class="card-link">
+            <a target="_blank">
+              <img
+                src="../../../assets/hallofFame/thumbnail2.jpg"
+                alt=""
+                class="image-fluid card-image"
+              />
+            </a>
+            <div class="img-content">
+              <h2 class="card-title mt-3">Pareekshith Raj P- 8C</h2>
+              <p>Bagged prizes in Bhagavad Gita and Singing Competitions</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-lg-4 mb-4">
+      <ul class="card-list d-flex">
+        <li class="card-item">
+          <div class="card-link">
+            <a target="_blank">
+              <img
+                src="../../../assets/hallofFame/thumbnail3.jpg"
+                alt=""
+                class="image-fluid card-image"
+              />
+            </a>
+            <div class="img-content">
+              <h2 class="card-title mt-3">Pranamya Prasad- 8C</h2>
+              <p>Bagged prizes in Karate Competitions</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

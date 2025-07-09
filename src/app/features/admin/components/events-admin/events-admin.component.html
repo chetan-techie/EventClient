@@ -1,0 +1,130 @@
+<div class="container container-fluid">
+  <h2 class="all-caps p-3">Events</h2>
+  <div class="header-btns" [hidden]="addEditForm">
+    <button class="btn btn-primary" (click)="addEvent()">
+      <i class="fa fa-plus" aria-hidden="true"></i> Events
+    </button>
+  </div>
+  <div class="d-flex justify-content-center clear">
+    <div class="d-flex justify-content-center" *ngIf="!events.length">
+      <p>No events found</p>
+    </div>
+    <table
+      class="table table-hover table-responsive"
+      *ngIf="events.length"
+      [class.tableForm]="addEditForm"
+    >
+      <thead>
+        <tr class="table-secondary">
+          <th scope="col">Event ID</th>
+          <th scope="col" width="20%">Title</th>
+          <th scope="col">Drive URL</th>
+          <th scope="col">Image URL</th>
+          <th scope="col">Status</th>
+          <th scope="col">Last Updated</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>{{ event.id }}</td>
+          <td>{{ event.name }}</td>
+          <td>
+            <a [href]="event.eventURL">{{ event.eventURL }}</a>
+          </td>
+          <td>
+            <img
+              [src]="event.imagePath"
+              [alt]="event.name"
+              class="image-fluid card-image"
+            />
+          </td>
+          <td>
+            {{ event.active }}
+          </td>
+          <td>
+            {{ event.lastModified | date }}
+          </td>
+          <td>
+            <button class="btn" (click)="editEvent(event)">
+              <i class="fa fa-edit" aria-hidden="true"></i>
+            </button>
+            <button class="btn" (click)="deleteEvent(event.id)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div [hidden]="!addEditForm">
+      <div class="container mb-2">
+        <p class="title">Add New Event:</p>
+        <form [formGroup]="eventsForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="title">Event Name</label>
+            <input
+              type="text"
+              id="title"
+              formControlName="name"
+              placeholder="Enter Event Name"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="eventDate">Event Date</label>
+            <input
+              type="date"
+              id="eventDate"
+              formControlName="eventDate"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="driveUrl">Drive URL</label>
+            <input
+              type="text"
+              id="driveUrl"
+              formControlName="eventURL"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="imageUpload">Upload Image</label>
+            <input
+              type="file"
+              id="imageUpload"
+              (change)="onFileChange($event)"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group form-check">
+            <input
+              type="checkbox"
+              id="enabled"
+              checked
+              data-toggle="toggle"
+              formControlName="active"
+              class="form-check-input"
+            />
+            <label for="enabled" class="form-check-label">Enabled</label>
+          </div>
+
+          <div class="form-group mt-1">
+            <button type="submit" class="btn save-btn">Save</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onCancelEdit()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

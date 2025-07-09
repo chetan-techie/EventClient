@@ -1,0 +1,6 @@
+.container-block p {
+  text-align: justify !important;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 1px;
+}

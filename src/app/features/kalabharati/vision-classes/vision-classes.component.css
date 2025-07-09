@@ -1,0 +1,54 @@
+.container {
+  text-align: left;
+}
+.p {
+  text-align: justify;
+  letter-spacing: 0;
+}
+ul {
+  padding: 0;
+  margin-top: 0 !important;
+}
+.icon-list-item {
+  display: flex;
+  padding-bottom: calc(20px / 2);
+}
+.list-icon {
+  padding-right: 10px;
+  color: var(--orange);
+  font-size: 22px;
+}
+.contact {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+}
+h3 {
+  background: var(--main-blue);
+  color: #fff;
+  padding: 10px;
+}
+
+/* media queries */
+@media only screen and (max-width: 1200px) {
+  h4,
+  h3 {
+    font-size: 20px;
+    line-height: normal;
+    text-align: left !important;
+  }
+  h5,
+  h6 {
+    font-size: 18px;
+    line-height: normal;
+    text-align: left !important;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: normal;
+    text-align: left !important;
+  }
+  table * {
+    font-size: 14px;
+  }
+}

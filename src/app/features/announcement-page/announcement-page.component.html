@@ -1,0 +1,54 @@
+<div class="container container-fluid">
+  <h2 class="all-caps p-3">Announcements</h2>
+  <div class="header-btns">
+    <button class="btn btn-primary" (click)="addNew()">
+      <i class="fa fa-plus" aria-hidden="true"></i> Announcement
+    </button>
+  </div>
+  <div [class.d-flex]="openForm" class="clear">
+    <table
+      class="table table-hover table-responsive"
+      [class.tableForm]="openForm"
+    >
+      <thead>
+        <tr class="table-secondary">
+          <th scope="col">#</th>
+          <th scope="col" width="50%">Announcement</th>
+          <th scope="col" width="10%">Status</th>
+          <th scope="col" width="10%">Last Updated</th>
+          <th scope="col" width="20%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data; let i = index">
+          <th scope="row">
+            {{ i + 1 }}
+          </th>
+          <td>{{ item.announcement }}</td>
+          <td>{{ item.status ? "Active" : "Inactive" }}</td>
+          <td>{{ item.dateTime | date }}</td>
+          <td>
+            <div class="d-flex">
+              <div class="action-btns mx-2">
+                <button class="btn" (click)="delete(item.id)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="action-btns mx-2" (click)="editData(item)">
+                <button class="btn">
+                  <i class="fa fa-edit" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="openForm">
+      <app-add-edit-announcements
+        [data]="editAnnouncement"
+        (updateData)="updateData($event)"
+      ></app-add-edit-announcements>
+    </div>
+  </div>
+</div>

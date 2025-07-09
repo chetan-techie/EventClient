@@ -1,0 +1,119 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --main-blue: #041e42;
+  --white: #ffffff;
+  --orange: #e16103;
+}
+
+body {
+  margin: 0;
+}
+* {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.all-caps {
+  text-transform: uppercase;
+}
+.clear {
+  clear: both;
+}
+.font-italic {
+  font-style: italic;
+}
+.font-bold {
+  font-weight: bold;
+}
+.text-left {
+  text-align: left;
+}
+
+.container-fluid {
+  max-width: 1140px;
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #e16103;
+  font-weight: 400;
+  font-size: 26px;
+}
+
+.section-title::before {
+  position: absolute;
+  content: "";
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #e16103;
+}
+
+.section-title span {
+  position: relative;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.underconstruction {
+  max-width: 650px !important;
+}
+
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+
+/* common header styles */
+.page-title {
+  text-align: left;
+  font-weight: bold;
+  color: #e16103;
+  text-transform: uppercase;
+}
+.container-block {
+  text-align: justify;
+}
+.container-block h2 {
+  font-weight: bold;
+  color: #e16103;
+  text-transform: uppercase;
+}
+.bottom-line::after {
+  display: block;
+  margin-top: 10px;
+  bottom: 0;
+  width: 25%;
+  height: 5px;
+  border-radius: 3px;
+  content: "";
+  background-color: #e16103;
+}
+
+.readmore {
+  background: #e16103;
+  color: #fff;
+  transition: 0.75s;
+  box-shadow: inset 0px 0 #ccc;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.readmore:hover {
+  box-shadow: inset 100px 0 0 0 #102a83;
+  border: 1px solid #102a83;
+}

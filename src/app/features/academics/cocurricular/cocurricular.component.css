@@ -1,0 +1,38 @@
+.page-title {
+  text-align: left;
+  font-weight: bold;
+  color: #e16103;
+  text-transform: uppercase;
+}
+.sub-title {
+  text-align: left;
+  text-transform: uppercase;
+}
+.container-block p {
+  text-align: justify !important;
+  font-size: 18px;
+}
+section {
+  margin-bottom: 20px;
+}
+section img {
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+}
+section .row {
+  background: #f5f5f5;
+  padding: 20px;
+}
+ul {
+  padding: 0;
+  margin-top: 0 !important;
+}
+.icon-list-item {
+  display: flex;
+  padding-bottom: calc(20px / 2);
+}
+.list-icon {
+  padding-right: 10px;
+  color: var(--orange);
+  font-size: 22px;
+}

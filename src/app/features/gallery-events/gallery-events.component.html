@@ -1,0 +1,37 @@
+<div class="container pt-5">
+  <h2 class="bottom-line text-left all-caps">Events Gallery</h2>
+
+  <div class="d-flex justify-content-center">
+    <div
+      class="d-flex justify-content-center"
+      *ngIf="!isLoading && events.length === 0"
+    >
+      <p>No events found</p>
+    </div>
+    <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div class="row pb-1" *ngIf="!isLoading">
+    <div class="col-lg-4 mb-4" *ngFor="let event of events">
+      <ul class="card-list d-flex">
+        <li class="card-item">
+          <div class="card-link">
+            <a target="_blank" [href]="event.driveUrl">
+              <img
+                [src]="event.imagePath"
+                [alt]="event.name"
+                class="image-fluid card-image"
+              />
+            </a>
+            <div class="img-content">
+              <h2 class="card-title mt-3">{{ event.name }}</h2>
+              <p>{{ event.eventDate | date }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

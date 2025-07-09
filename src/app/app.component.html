@@ -1,0 +1,14 @@
+﻿<div class="scroll-watcher"></div>
+
+<app-header [isAdmin]="isAdminPage"></app-header>
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<!-- app.component.html -->
+<button
+  (click)="scrollToTop()"
+  class="go-to-top"
+  [class.show]="isButtonVisible"
+>
+  <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+</button>
+
+<app-footer></app-footer>

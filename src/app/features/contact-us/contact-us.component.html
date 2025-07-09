@@ -1,0 +1,172 @@
+<div class="container-fluid contact-us mx-auto">
+  <div class="container">
+    <div class="mt-2 mb-5">
+      <div class="contact-bg mb-2">
+        <h4>
+          <h3 class="font-weight-bold p-4 text-white text-center">
+            Contact Us
+          </h3>
+        </h4>
+      </div>
+      <div class="row">
+        <h6 class="all-caps">Admission</h6>
+        <p>
+          Admission to our school is based on merit and we follow a transparent
+          and fair process. Parents can do an online/telephonic enquiry and
+          apply for admission in person. We offer classes from pre-kindergarten
+          to Grade 10. Registration forms are available between 10:00 am and
+          4:00 pm on all working days at the school office.
+        </p>
+        <p>Document required for admission are as follows:</p>
+        <ol class="px-5">
+          <li>
+            Attested photocopy of birth certificate from municipal corporation
+          </li>
+          <li>Two passport size photographs</li>
+          <li>Proof of residence</li>
+          <li>Caste Certificate (BPL/SC/ST/OBC)</li>
+          <li>Transfer Certificate and Marks Card</li>
+          <li>Pan Card of parents</li>
+          <li>Aadhar Card of parents and child</li>
+        </ol>
+      </div>
+      <div class="contact-card mt-2 mb-5">
+        <div class="row">
+          <h6 class="m-0 all-caps">For enquiry:</h6>
+          <div class="col-lg-6">
+            <div class="address-box">
+              <div class="alert alert-secondary mt-1" role="alert">
+                <h5>
+                  <i class="fa fa-map-marker" aria-hidden="true"></i> Address
+                </h5>
+
+                <p>CA14, Hunsur Rd,</p>
+                <p>Vijayanagar 1st Stage,</p>
+                <p>Mysuru, Karnataka - 570017</p>
+              </div>
+              <div class="alert alert-secondary mt-1" role="alert">
+                <div class="pl-3">
+                  <p>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    principal&#64;bvbmysuru.com
+                  </p>
+                </div>
+              </div>
+
+              <div class="alert alert-secondary mt-1" role="alert">
+                <div class="mt-0">
+                  <div>
+                    <h5>
+                      <i class="fa fa-clock-o" aria-hidden="true"></i> Opening
+                      Hours
+                    </h5>
+                    <p>Monday - Saturday:</p>
+                    <p class="m-0">09:00 AM - 05:00 PM</p>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="pt-5">
+                    <p>
+                      <i class="fa fa-phone" aria-hidden="true"></i> 0821
+                      2412141, 0821 2416106
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-secondary mt-1" role="alert">
+                <a
+                  href="https://maps.app.goo.gl/8m3YSskfahCe8X8y9"
+                  class="map"
+                  target="_blank"
+                  ><span>School Location</span
+                  ><img
+                    src="../../../assets/bg/school-map.png"
+                    class="map-location"
+                /></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="alert alert-secondary address-box mt-4 pb-5">
+              <h5 class="all-caps">Send us a message!</h5>
+              <form
+                [formGroup]="formData"
+                (ngSubmit)="postContact()"
+                style="width: 26rem; margin: 0 auto"
+              >
+                <!-- Name input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input
+                    type="text"
+                    id="form4Example1"
+                    name="name"
+                    class="form-control"
+                    placeholder="NAME"
+                    formControlName="Name"
+                  />
+                </div>
+                <!-- <div
+                  ngIf="name.invalid && (name.dirty || name.touched)"
+                  class="alert"
+                >
+                  Name is required.
+                </div> -->
+
+                <!-- Email input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input
+                    type="email"
+                    id="form4Example2"
+                    class="form-control"
+                    placeholder="Email address"
+                    formControlName="Email"
+                    name="email"
+                  />
+                </div>
+                <!-- <div
+                  ngIf="email.invalid && (email.dirty || email.touched)"
+                  class="alert"
+                >
+                  Email is not valid.
+                </div> -->
+
+                <!-- Message input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <textarea
+                    class="form-control"
+                    id="form4Example3"
+                    rows="4"
+                    placeholder="Message"
+                    formControlName="Message"
+                    name="message"
+                  ></textarea>
+                </div>
+                <!-- <div
+                  ngIf="message.invalid && (message.dirty || message.touched)"
+                  class="alert"
+                >
+                  Message is required.
+                </div> -->
+
+                <!-- Submit button -->
+                <button
+                  data-mdb-ripple-init
+                  type="submit"
+                  class="btn send-btn mb-4"
+                  [disabled]="!formData.valid"
+                >
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map">
+        <!-- <img src="../../../assets/bg/map-qr.png" class="map-qr" /> -->
+      </div>
+    </div>
+  </div>
+</div>
