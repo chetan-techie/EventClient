@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../core/services/events.service';
+import { baseImageUrl } from '../../shared/utils/utils';
 
 @Component({
   selector: 'app-gallery-events',
@@ -19,9 +20,10 @@ export class GalleryEventsComponent implements OnInit {
         .map((event: any) => {
           return {
             ...event,
-            imagePath: `http://localhost:8085/${event.imagePath}`,
+            imagePath: `${baseImageUrl}/${event.imagePath}`,
           };
         })
+        .filter((e: any) => e.eventType === 'image')
         .sort(
           (a: any, b: any) =>
             new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime()

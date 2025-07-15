@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import Swiper from 'swiper';
 import 'swiper/css';
 import { EventsService } from '../../core/services/events.service';
-import { Testimonials } from '../../shared/utils/utils';
+import { baseImageUrl, Testimonials } from '../../shared/utils/utils';
 
 @Component({
   selector: 'app-home',
@@ -80,8 +80,9 @@ export class HomeComponent implements OnInit {
       this.events = events
         .map((event: any) => ({
           ...event,
-          imagePath: `http://localhost:8085/${event.imagePath}`,
+          imagePath: `${baseImageUrl}/${event.imagePath}`,
         }))
+        .filter((e: any) => e.eventType === 'image')
         .sort(
           (a: any, b: any) =>
             new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime()

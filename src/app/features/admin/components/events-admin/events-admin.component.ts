@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventsService } from '../../../../core/services/events.service';
+import { baseImageUrl } from '../../../../shared/utils/utils';
 
 @Component({
   selector: 'app-events-admin',
@@ -34,7 +35,7 @@ export class EventsAdminComponent implements OnInit {
       this.events = events
         .map((event: any) => ({
           ...event,
-          imagePath: `http://localhost:8085/${event.imagePath}`,
+          imagePath: `${baseImageUrl}/${event.imagePath}`,
         }))
         .filter((e: any) => e.eventType === 'image');
     });
@@ -58,7 +59,7 @@ export class EventsAdminComponent implements OnInit {
 
   editEvent(event: any) {
     this.addEditForm = true;
-    this.selectedEvent = event;
+    this.selectedEvent = { ...event, eventType: 'image' };
 
     this.eventsForm.patchValue({
       id: event.id,
@@ -99,7 +100,7 @@ export class EventsAdminComponent implements OnInit {
     if (this.eventsForm.valid && this.selectedFile) {
       const formData = new FormData();
 
-      const schoolEvent = this.eventsForm.value;
+      const schoolEvent = { ...this.eventsForm.value, eventType: 'image' };
       const eventBlob = new Blob([JSON.stringify(schoolEvent)], {
         type: 'application/json',
       });
