@@ -74,7 +74,7 @@ export class EventsAdminComponent implements OnInit {
   }
 
   removeEvent(eventId: number) {
-    this.es.deleteEvent(eventId).subscribe((res: any) => {
+    this.es.deleteEvent(eventId.toString()).subscribe((res: any) => {
       this.events = this.events.filter((event) => event.id !== res.id);
       this.getEvents();
     });
@@ -107,7 +107,7 @@ export class EventsAdminComponent implements OnInit {
       formData.append('schoolEvent', eventBlob);
       formData.append('imageFile', this.selectedFile);
 
-      this.es.postEvent(formData).subscribe((res: any) => {
+      this.es.createEvent(formData).subscribe((res: any) => {
         console.log(res);
         this.getEvents();
       });

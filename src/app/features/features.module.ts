@@ -23,7 +23,9 @@ import { CocurricularComponent } from './academics/cocurricular/cocurricular.com
 import { CalendarEventsComponent } from './academics/calendar-events/calendar-events.component';
 import { KalabharatiModule } from './kalabharati/kalabharati.module';
 import { EventsAdminComponent } from './admin/components/events-admin/events-admin.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EventsModule } from './admin/components/new-events-admin/module_imports';
+import { NewAnnouncementPageComponent } from './announcement-page/new-announcement-admin/new-annoucement-admin.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     PageNotFoundComponent,
     AddEditAnnouncementsComponent,
     AnnouncementPageComponent,
+    NewAnnouncementPageComponent,
     GalleryEventsComponent,
     AdminLoginComponent,
     LeadersListComponent,
@@ -48,7 +51,13 @@ import { FormsModule } from '@angular/forms';
     CalendarEventsComponent,
     EventsAdminComponent,
   ],
-  imports: [SharedModule, KalabharatiModule, FormsModule],
+  imports: [
+    SharedModule,
+    KalabharatiModule,
+    FormsModule,
+    ReactiveFormsModule,
+    EventsModule,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class FeaturesModule {}

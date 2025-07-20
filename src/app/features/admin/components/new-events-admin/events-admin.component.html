@@ -1,0 +1,221 @@
+<div class="events-admin-container">
+  <!-- Header -->
+  <div class="header-section">
+    <h1 class="page-title">
+      <mat-icon>event</mat-icon>
+      Events Management
+    </h1>
+    <button mat-raised-button color="primary" (click)="addEvent()" class="add-button">
+      <mat-icon>add</mat-icon>
+      Add Event
+    </button>
+  </div>
+
+  <!-- Tabs -->
+  <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="onTabChange($event)" class="events-tabs">
+    <mat-tab *ngFor="let tab of tabs; let i = index" [label]="tab.label">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <!-- Loading Spinner -->
+          <div *ngIf="isLoading" class="loading-container">
+            <mat-spinner diameter="50"></mat-spinner>
+            <p>Loading events...</p>
+          </div>
+
+          <!-- Events Grid -->
+          <div *ngIf="!isLoading && filteredEvents.length > 0" class="events-grid">
+            <mat-card *ngFor="let event of filteredEvents" class="event-card" 
+                     [class.selected]="selectedEvent?.id === event.id"
+                     (click)="onSelectEvent(event)">
+              
+              <!-- Image Event Card -->
+              <div *ngIf="event.eventType === 'image'" class="image-event-card">
+                <div class="image-container">
+                  <img [src]="event.imagePath" [alt]="event.name" class="event-image" 
+                       onerror="this.src='assets/images/placeholder.jpg'">
+                  <div class="image-overlay">
+                    <button mat-icon-button color="primary" (click)="editEvent(event); $event.stopPropagation()">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteEvent(event.id); $event.stopPropagation()">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <mat-card-content>
+                  <h3 class="event-title">{{ event.name }}</h3>
+                  <p class="event-date">
+                    <mat-icon class="date-icon">date_range</mat-icon>
+                    {{ event.eventDate | date:'mediumDate' }}
+                  </p>
+                  <div class="event-status">
+                    <mat-chip [class]="event.active ? 'active-chip' : 'inactive-chip'">
+                      <mat-icon>{{ event.active ? 'visibility' : 'visibility_off' }}</mat-icon>
+                      {{ event.active ? 'Active' : 'Inactive' }}
+                    </mat-chip>
+                  </div>
+                </mat-card-content>
+              </div>
+
+              <!-- Video Event Card -->
+              <div *ngIf="event.eventType === 'video'" class="video-event-card">
+                <div class="video-container">
+                  <iframe [src]="getYouTubeEmbedUrl(event.eventURL) | safe" 
+                          frameborder="0" 
+                          allowfullscreen
+                          class="video-player">
+                  </iframe>
+                  <div class="video-overlay">
+                    <button mat-icon-button color="primary" (click)="editEvent(event); $event.stopPropagation()">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteEvent(event.id); $event.stopPropagation()">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <mat-card-content>
+                  <h3 class="event-title">{{ event.name }}</h3>
+                  <p class="event-date">
+                    <mat-icon class="date-icon">date_range</mat-icon>
+                    {{ event.eventDate | date:'mediumDate' }}
+                  </p>
+                  <div class="event-status">
+                    <mat-chip [class]="event.active ? 'active-chip' : 'inactive-chip'">
+                      <mat-icon>{{ event.active ? 'visibility' : 'visibility_off' }}</mat-icon>
+                      {{ event.active ? 'Active' : 'Inactive' }}
+                    </mat-chip>
+                  </div>
+                </mat-card-content>
+              </div>
+            </mat-card>
+          </div>
+
+          <!-- Empty State -->
+          <div *ngIf="!isLoading && filteredEvents.length === 0" class="empty-state">
+            <mat-icon class="empty-icon">{{ tabs[selectedTab].icon }}</mat-icon>
+            <h2>No {{ tabs[selectedTab].label }} Found</h2>
+            <p>Start by adding your first {{ tabs[selectedTab].eventType === 'image' ? 'gallery event' : 'video event' }}</p>
+            <button mat-raised-button color="primary" (click)="addEvent()">
+              <mat-icon>add</mat-icon>
+              Add {{ tabs[selectedTab].eventType === 'image' ? 'Gallery Event' : 'Video Event' }}
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- Add/Edit Form Modal -->
+  <div class="form-overlay" *ngIf="addEditForm" (click)="onCancelEdit()">
+    <div class="form-container" (click)="$event.stopPropagation()">
+      <mat-card class="form-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>{{ selectedEvent?.id ? 'edit' : 'add' }}</mat-icon>
+            {{ selectedEvent?.id ? 'Edit' : 'Add' }} 
+            {{ isCurrentEventType('image') ? 'Gallery Event' : 'Video Event' }}
+          </mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <form [formGroup]="eventsForm" (ngSubmit)="onSubmit()" class="event-form">
+            
+            <!-- Event Name -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Event Name</mat-label>
+              <input matInput formControlName="name" placeholder="Enter event name">
+              <mat-error *ngIf="eventsForm.get('name')?.invalid && eventsForm.get('name')?.touched">
+                {{ getErrorMessage('name') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Event Date -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Event Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="eventDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="eventsForm.get('eventDate')?.invalid && eventsForm.get('eventDate')?.touched">
+                Event date is required
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Event URL for Videos -->
+            <mat-form-field appearance="outline" class="full-width" *ngIf="isCurrentEventType('video')">
+              <mat-label>YouTube URL</mat-label>
+              <input matInput formControlName="eventURL" placeholder="https://www.youtube.com/watch?v=...">
+              <mat-hint>Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ</mat-hint>
+              <mat-error *ngIf="eventsForm.get('eventURL')?.invalid && eventsForm.get('eventURL')?.touched">
+                {{ getErrorMessage('eventURL') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Event URL for Images (optional) -->
+            <mat-form-field appearance="outline" class="full-width" *ngIf="isCurrentEventType('image')">
+              <mat-label>Event URL (Optional)</mat-label>
+              <input matInput formControlName="eventURL" placeholder="https://example.com/event-details">
+              <mat-hint>Optional link to event details page</mat-hint>
+              <mat-error *ngIf="eventsForm.get('eventURL')?.invalid && eventsForm.get('eventURL')?.touched">
+                {{ getErrorMessage('eventURL') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Image Upload for Gallery Events -->
+            <div *ngIf="isCurrentEventType('image')" class="image-upload-section">
+              <div class="upload-container">
+                <input type="file" #fileInput (change)="onFileChange($event)" 
+                       accept="image/*" style="display: none;">
+                
+                <div class="upload-area" (click)="fileInput.click()" 
+                     [class.has-image]="imagePreview">
+                  <div *ngIf="!imagePreview" class="upload-placeholder">
+                    <mat-icon class="upload-icon">cloud_upload</mat-icon>
+                    <p>Click to upload image</p>
+                    <small>Supports: JPEG, PNG, GIF, WebP (Max 5MB)</small>
+                  </div>
+                  
+                  <div *ngIf="imagePreview" class="image-preview">
+                    <img [src]="imagePreview" alt="Preview" class="preview-image">
+                    <div class="image-actions">
+                      <button mat-icon-button type="button" (click)="fileInput.click(); $event.stopPropagation()">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button type="button" (click)="imagePreview = null; selectedFile = null; $event.stopPropagation()">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Status -->
+            <div class="status-section">
+              <mat-slide-toggle formControlName="active" color="primary">
+                <span class="toggle-label">
+                  <mat-icon>{{ eventsForm.get('active')?.value ? 'visibility' : 'visibility_off' }}</mat-icon>
+                  {{ eventsForm.get('active')?.value ? 'Active' : 'Inactive' }}
+                </span>
+              </mat-slide-toggle>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+              <button mat-button type="button" (click)="onCancelEdit()" class="cancel-btn">
+                <mat-icon>cancel</mat-icon>
+                Cancel
+              </button>
+              <button mat-raised-button color="primary" type="submit" 
+                      [disabled]="eventsForm.invalid || isLoading" class="save-btn">
+                <mat-icon *ngIf="!isLoading">{{ selectedEvent?.id ? 'save' : 'add' }}</mat-icon>
+                <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+                {{ selectedEvent?.id ? 'Update' : 'Create' }} Event
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

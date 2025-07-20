@@ -30,7 +30,7 @@ export class AdminLoginComponent {
     const password = this.formData.value.password;
     this.loginWait = !this.loginWait;
     if (!password && email) {
-      this.authenticationService.requestOTP(email).subscribe((res) => {
+      this.authenticationService.login(email).subscribe((res) => {
         if (res) {
           this.enableOTPField = true;
           this.loginWait = false;

@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,6 +17,7 @@ import { DanceMusicComponent } from './features/kalabharati/dance-music/dance-mu
 import { ArtPaintingComponent } from './features/kalabharati/art-painting/art-painting.component';
 import { MusicInstrumentsComponent } from './features/kalabharati/music-instruments/music-instruments.component';
 import { JyotishaComponent } from './features/kalabharati/jyotisha/jyotisha.component';
+import { AuthInterceptor } from './core/interceptors/authInterceptor';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,14 @@ import { JyotishaComponent } from './features/kalabharati/jyotisha/jyotisha.comp
     AppRoutingModule,
     FeaturesModule,
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

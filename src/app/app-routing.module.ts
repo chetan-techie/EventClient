@@ -9,8 +9,6 @@ import { CurricularComponent } from './features/curricular/curricular.component'
 import { AdminComponent } from './features/admin/admin.component';
 import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
 import { AnnouncementPageComponent } from './features/announcement-page/announcement-page.component';
-import { AdminLoginComponent } from './features/admin-login/admin-login.component';
-import { AuthGuard } from './core/guards/auth.guard';
 import { MandatoryDisclosureComponent } from './features/mandatory-disclosure/mandatory-disclosure.component';
 import { KalabharatiComponent } from './features/kalabharati/kalabharati.component';
 import { HallOfFameComponent } from './features/achievements/hall-of-fame/hall-of-fame.component';
@@ -24,7 +22,11 @@ import { MusicInstrumentsComponent } from './features/kalabharati/music-instrume
 import { VisionClassesComponent } from './features/kalabharati/vision-classes/vision-classes.component';
 import { JyotishaComponent } from './features/kalabharati/jyotisha/jyotisha.component';
 import { GalleryEventsComponent } from './features/gallery-events/gallery-events.component';
-import { EventsAdminComponent } from './features/admin/components/events-admin/events-admin.component';
+import { EventsAdminComponent } from './features/admin/components/new-events-admin/events-admin.component';
+import { LoginComponent } from './features/admin-login/new-form/admin-login.component';
+import { AdminRouteGuard } from './core/guards/auth.guard';
+import { LoginGuard } from './core/guards/login.guard';
+import { NewAnnouncementPageComponent } from './features/announcement-page/new-announcement-admin/new-annoucement-admin.component';
 
 const routes: Routes = [
   {
@@ -103,20 +105,26 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-
+    canActivateChild: [AdminRouteGuard],
     children: [
-      { path: 'login', component: AdminLoginComponent },
+      {
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [LoginGuard],
+      },
       {
         path: 'announcements',
-        component: AnnouncementPageComponent,
-        canActivate: [AuthGuard],
+        component: NewAnnouncementPageComponent,
       },
       {
-        path: 'events-admin',
+        path: 'dashboard',
         component: EventsAdminComponent,
-        canActivate: [AuthGuard],
       },
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
     ],
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
