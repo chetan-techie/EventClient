@@ -366,30 +366,29 @@
 <div class="event-gallery container pt-5">
   <h2 class="bottom-line text-left all-caps">Event Videos</h2>
   <div class="row pb-1">
-    <div class="col-lg-4 mb-4">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe
-          class="player"
-          src="https://www.youtube.com/embed/W30MfIh8WUo"
-        ></iframe>
+    <mat-card
+      *ngFor="let event of videoEvents"
+      class="col-lg-4 mb-4 event-card"
+    >
+      <div *ngIf="event.eventType === 'video'" class="video-event-card">
+        <div class="video-container">
+          <iframe
+            [src]="getYouTubeEmbedUrl(event.eventURL) | safe : 'resourceUrl'"
+            frameborder="0"
+            allowfullscreen
+            class="video-player"
+          >
+          </iframe>
+        </div>
+        <mat-card-content>
+          <h3 class="event-title">{{ event.name }}</h3>
+          <p class="event-date">
+            <mat-icon class="date-icon">date_range</mat-icon>
+            {{ event.eventDate | date : "mediumDate" }}
+          </p>
+        </mat-card-content>
       </div>
-    </div>
-    <div class="col-lg-4 mb-4">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe
-          class="player"
-          src="https://www.youtube.com/embed/RRMBrkquKY4"
-        ></iframe>
-      </div>
-    </div>
-    <div class="col-lg-4 mb-4">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe
-          class="player"
-          src="https://www.youtube.com/embed/jV4YULzTcKM"
-        ></iframe>
-      </div>
-    </div>
+    </mat-card>
   </div>
 </div>
 
@@ -423,7 +422,10 @@
             </a>
             <div class="img-content">
               <h2 class="card-title mt-3">{{ event.name }}</h2>
-              <p>{{ event.eventDate | date }}</p>
+              <p class="event-date">
+                <mat-icon class="date-icon">date_range</mat-icon>
+                {{ event.eventDate | date }}
+              </p>
             </div>
           </div>
         </li>

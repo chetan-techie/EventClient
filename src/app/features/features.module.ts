@@ -26,6 +26,10 @@ import { EventsAdminComponent } from './admin/components/events-admin/events-adm
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsModule } from './admin/components/new-events-admin/module_imports';
 import { NewAnnouncementPageComponent } from './announcement-page/new-announcement-admin/new-annoucement-admin.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [

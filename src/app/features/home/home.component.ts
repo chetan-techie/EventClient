@@ -13,6 +13,7 @@ import { baseImageUrl, Testimonials } from '../../shared/utils/utils';
 export class HomeComponent implements OnInit {
   @ViewChild('parentElement') cardContainer: ElementRef;
   events: any = [];
+  videoEvents: any = [];
   cardContainerheight: number = 0;
   carousel = [
     '../../../assets/carousel/001.jpg',
@@ -88,7 +89,23 @@ export class HomeComponent implements OnInit {
             new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime()
         )
         .slice(0, 3);
+
+      this.videoEvents = events
+        .filter((e: any) => e.eventType === 'video' && e.active)
+        .sort(
+          (a: any, b: any) =>
+            new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime()
+        )
+        .slice(0, 3);
     });
+  }
+
+  getYouTubeEmbedUrl(url: string | undefined): string {
+    if (!url) return '';
+
+    // Convert YouTube URL to embed URL
+    const videoId = this.extractYouTubeVideoId(url);
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
   }
 
   readMore(path: string): void {
@@ -97,5 +114,14 @@ export class HomeComponent implements OnInit {
 
   navigateToGallery(): void {
     this.router.navigate(['/gallery-events']);
+  }
+
+  private extractYouTubeVideoId(url: string | undefined): string | null {
+    if (!url) return null;
+
+    const regex =
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
   }
 }

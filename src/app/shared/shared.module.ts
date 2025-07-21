@@ -11,6 +11,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { ImgCardComponent } from './img-card/img-card.component';
+import { SafePipe } from './pipes/safe.pipe';
+
+// Angular Material Imports
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -18,6 +32,7 @@ import { ImgCardComponent } from './img-card/img-card.component';
     SocialMediaLinksComponent,
     FooterComponent,
     ImgCardComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +43,19 @@ import { ImgCardComponent } from './img-card/img-card.component';
     MatButtonModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    MatTabsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSlideToggleModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatDialogModule,
   ],
   exports: [
     BrowserModule,
@@ -39,6 +67,20 @@ import { ImgCardComponent } from './img-card/img-card.component';
     ReactiveFormsModule,
     FooterComponent,
     ImgCardComponent,
+    SafePipe,
+    MatTabsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSlideToggleModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatDialogModule,
   ],
 })
 export class SharedModule {}
