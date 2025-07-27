@@ -413,13 +413,19 @@
       <ul class="card-list d-flex">
         <li class="card-item">
           <div class="card-link">
-            <a target="_blank" [href]="event.driveUrl">
+            <a target="_blank" [href]="event.eventURL" *ngIf="event.eventURL">
               <img
                 [src]="event.imagePath"
                 [alt]="event.name"
                 class="image-fluid card-image"
               />
             </a>
+            <img
+              *ngIf="!event.eventURL"
+              [src]="event.imagePath"
+              [alt]="event.name"
+              class="image-fluid card-image"
+            />
             <div class="img-content">
               <h2 class="card-title mt-3">{{ event.name }}</h2>
               <p class="event-date">

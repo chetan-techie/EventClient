@@ -9,7 +9,7 @@
     </div>
 
     <!-- Auth Mode Tabs -->
-    <div class="auth-tabs">
+    <div class="auth-tabs" *ngIf="false">
       <button
         type="button"
         class="tab-button"
@@ -151,7 +151,7 @@
       </button>
 
       <!-- Forgot Password Link -->
-      <div class="forgot-password" *ngIf="authMode === 'password'">
+      <div class="forgot-password" *ngIf="authMode === 'password' && false">
         <a href="#" class="forgot-link">Forgot your password?</a>
       </div>
     </form>
