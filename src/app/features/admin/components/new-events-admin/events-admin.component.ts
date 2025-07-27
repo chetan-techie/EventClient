@@ -210,7 +210,7 @@ export class EventsAdminComponent implements OnInit {
   addEvent(): void {
     const currentEventType = this.tabs[this.selectedTab].eventType;
     const newEvent: SchoolEvent = {
-      id: null,
+      id: '',
       name: '',
       eventURL: '',
       eventDate: new Date().toISOString().split('T')[0],

@@ -27,6 +27,7 @@ import { LoginComponent } from './features/admin-login/new-form/admin-login.comp
 import { AdminRouteGuard } from './core/guards/auth.guard';
 import { LoginGuard } from './core/guards/login.guard';
 import { NewAnnouncementPageComponent } from './features/announcement-page/new-announcement-admin/new-annoucement-admin.component';
+import { EventsVideoComponent } from './features/events-video/events-video.component';
 
 const routes: Routes = [
   {
@@ -80,6 +81,10 @@ const routes: Routes = [
   {
     path: 'gallery-events',
     component: GalleryEventsComponent,
+  },
+  {
+    path: 'events-video',
+    component: EventsVideoComponent,
   },
   {
     path: 'kalabharati',

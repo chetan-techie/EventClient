@@ -4,13 +4,15 @@ import { Observable } from 'rxjs';
 import { baseUrl } from '../../shared/utils/utils';
 
 export interface SchoolEvent {
-  id?: string | number | null;
+  id: string;
   name: string;
   eventDate: string;
   eventType: 'image' | 'video';
-  eventURL?: string;
+  eventURL: string;
   active: boolean;
-  imagePath?: string;
+  createdDate?: string;
+  modifiedDate?: string;
+  imagePath?: string | null;
 }
 
 @Injectable({

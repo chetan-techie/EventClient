@@ -112,7 +112,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate([path]);
   }
 
-  navigateToGallery(): void {
+  navigateToGallery(type?: string): void {
+    if (type === 'video') {
+      this.router.navigate(['/events-video']);
+      return;
+    }
     this.router.navigate(['/gallery-events']);
   }
 

@@ -1,5 +1,4 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 // import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -26,10 +25,7 @@ import { EventsAdminComponent } from './admin/components/events-admin/events-adm
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsModule } from './admin/components/new-events-admin/module_imports';
 import { NewAnnouncementPageComponent } from './announcement-page/new-announcement-admin/new-annoucement-admin.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatNativeDateModule } from '@angular/material/core';
+import { EventsVideoComponent } from './events-video/events-video.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +50,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     CocurricularComponent,
     CalendarEventsComponent,
     EventsAdminComponent,
+    EventsVideoComponent,
   ],
   imports: [
     SharedModule,

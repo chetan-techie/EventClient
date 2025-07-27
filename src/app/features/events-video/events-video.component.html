@@ -1,0 +1,112 @@
+<div class="events-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1 class="main-title bottom-line all-caps">
+      Event Videos
+      <span class="title-icon">🎥</span>
+    </h1>
+    <p class="subtitle">Experience the moments that made memories.</p>
+    <div class="stats-bar" *ngIf="!loading">
+      <div class="stat-item">
+        <span class="stat-number">{{ events.length }}</span>
+        <span class="stat-label">Total Events</span>
+      </div>
+      <!-- <div class="stat-item">
+        <span class="stat-number">{{ getActiveEventsCount() }}</span>
+        <span class="stat-label">Active</span>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading amazing content...</p>
+  </div>
+
+  <!-- Events Grid -->
+  <div *ngIf="!loading && events.length > 0" class="events-grid">
+    <div
+      *ngFor="let event of events; trackBy: trackByEventId"
+      class="event-card"
+      [class.inactive]="!event.active"
+    >
+      <!-- Video Thumbnail -->
+      <div class="video-container">
+        <div
+          class="video-thumbnail"
+          (click)="toggleVideo(event.id); $event.stopPropagation()"
+        >
+          <img
+            [src]="getYoutubeThumbnail(event.id)"
+            [alt]="event.name + ' thumbnail'"
+            class="thumbnail-image"
+            loading="lazy"
+          />
+          <div class="play-overlay">
+            <div class="play-button">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+          <div class="video-duration">
+            {{ getVideoDuration(event.eventURL) }}
+          </div>
+        </div>
+
+        <!-- Embedded Video (shown when clicked) -->
+        <div
+          *ngIf="activeVideoId === event.id"
+          class="video-embed"
+          (click)="$event.stopPropagation()"
+        >
+          <iframe
+            [src]="getEmbedUrl(event.id)"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; encrypted-media"
+            class="youtube-iframe"
+            loading="lazy"
+            [id]="'video-' + event.id"
+          ></iframe>
+          <button
+            class="close-video"
+            (click)="closeVideo(); $event.stopPropagation()"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card Content -->
+      <div class="card-content">
+        <div class="event-header">
+          <h3 class="event-title">{{ event.name }}</h3>
+        </div>
+
+        <div class="event-meta">
+          <div class="meta-item">
+            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"
+              />
+            </svg>
+            <span>{{ formatDate(event.eventDate) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && events.length === 0" class="empty-state">
+    <div class="empty-icon">🎭</div>
+    <h3>No video events found</h3>
+    <p>Check back later for exciting video content!</p>
+  </div>
+</div>

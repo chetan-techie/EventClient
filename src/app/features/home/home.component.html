@@ -365,11 +365,8 @@
 <!-- Event Videos -->
 <div class="event-gallery container pt-5">
   <h2 class="bottom-line text-left all-caps">Event Videos</h2>
-  <div class="row pb-1">
-    <mat-card
-      *ngFor="let event of videoEvents"
-      class="col-lg-4 mb-4 event-card"
-    >
+  <div class="event-video-block pb-1">
+    <mat-card *ngFor="let event of videoEvents" class="event-card">
       <div *ngIf="event.eventType === 'video'" class="video-event-card">
         <div class="video-container">
           <iframe
@@ -389,6 +386,12 @@
         </mat-card-content>
       </div>
     </mat-card>
+  </div>
+
+  <div class="overlay-button mt-4">
+    <button class="btn readmore" (click)="navigateToGallery('video')">
+      VIEW MORE
+    </button>
   </div>
 </div>
 
