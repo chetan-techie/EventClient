@@ -26,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsModule } from './admin/components/new-events-admin/module_imports';
 import { NewAnnouncementPageComponent } from './announcement-page/new-announcement-admin/new-annoucement-admin.component';
 import { EventsVideoComponent } from './events-video/events-video.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { EventsVideoComponent } from './events-video/events-video.component';
     FormsModule,
     ReactiveFormsModule,
     EventsModule,
+    PdfViewerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
