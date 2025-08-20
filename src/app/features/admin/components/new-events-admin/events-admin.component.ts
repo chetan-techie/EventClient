@@ -250,8 +250,11 @@ export class EventsAdminComponent implements OnInit {
       return;
     }
 
+    const rawDate = this.eventsForm.get('eventDate')?.value;
+    const eventDate = rawDate.toLocaleDateString('en-CA');
+
     this.isLoading = true;
-    const formValue = this.eventsForm.value;
+    const formValue = { ...this.eventsForm.value, eventDate };
     const isUpdate = formValue.id && formValue.id !== null;
 
     // Determine if we need to use FormData (for file uploads) or just the event object
