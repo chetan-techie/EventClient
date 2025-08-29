@@ -1,7 +1,8 @@
-export const prodUrl: string = 'https://chetanprojects.online'; //'https://bvbmysuru.com';
+export const prodUrl: string = 'https://bvbmysuru.com';
+export const stageUrl: string = 'https://chetanprojects.online'; //'https://bvbmysuru.com';
 // export const devUrl: string = 'http://localhost:5000';
 export const devUrl: string = 'http://localhost:8085';
-export const baseUrl: string = prodUrl;
+export const baseUrl: string = stageUrl;
 export const baseImageUrl: string = baseUrl + '/uploads';
 
 export const Testimonials = [
@@ -83,12 +84,12 @@ export const Testimonials = [
 export const leaders = [
   {
     name: 'Dr. K. B. Ganapathy',
-    designation: 'Chairman',
+    designation: 'Ex-Chairman',
     profile: 'Sri K B Ganapathy',
   },
   {
     name: 'Dr. C. Naganna',
-    designation: 'Vice-Chairman',
+    designation: 'Chairman',
     profile: 'Dr. C. Naganna',
   },
   {

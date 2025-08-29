@@ -1,0 +1,403 @@
+<div class="feedback-system">
+  <!-- Header Section -->
+  <div class="header-section">
+    <div class="container">
+      <h1 class="main-title">Share Your Experience</h1>
+      <p class="subtitle">Help us improve and inspire future students</p>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <div class="container">
+      <div class="tabs">
+        <button
+          class="tab-button"
+          [class.active]="activeTab === 'testimonials'"
+          (click)="setActiveTab('testimonials')"
+        >
+          <i class="icon">🎓</i>
+          Alumni Testimonials
+        </button>
+        <button
+          class="tab-button"
+          [class.active]="activeTab === 'feedback'"
+          (click)="setActiveTab('feedback')"
+        >
+          <i class="icon">💬</i>
+          Parent Feedback
+        </button>
+        <button
+          class="tab-button"
+          [class.active]="activeTab === 'view-testimonials'"
+          (click)="setActiveTab('view-testimonials')"
+        >
+          <i class="icon">👀</i>
+          View Testimonials
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonial Form -->
+  <div
+    class="content-section"
+    *ngIf="activeTab === 'testimonials'"
+    [@fadeInOut]
+  >
+    <div class="container">
+      <div class="form-container testimonial-form">
+        <h2>Share Your Success Story</h2>
+        <p class="form-description">
+          As an alumnus, inspire current and future students with your journey
+        </p>
+
+        <form [formGroup]="testimonialForm" (ngSubmit)="submitTestimonial()">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="alumni-name">Full Name *</label>
+              <input
+                type="text"
+                id="alumni-name"
+                formControlName="name"
+                placeholder="Enter your full name"
+              />
+              <div
+                class="error-message"
+                *ngIf="
+                  testimonialForm.get('name')?.invalid &&
+                  testimonialForm.get('name')?.touched
+                "
+              >
+                Name is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="graduation-year">Graduation Year *</label>
+              <select id="graduation-year" formControlName="graduationYear">
+                <option value="">Select Year</option>
+                <option *ngFor="let year of graduationYears" [value]="year">
+                  {{ year }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="course">Course/Stream *</label>
+              <input
+                type="text"
+                id="course"
+                formControlName="course"
+                placeholder="e.g., Computer Science, Arts, Commerce"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                placeholder="your.email@example.com"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="testimonial-message">Your Testimonial *</label>
+            <textarea
+              id="testimonial-message"
+              formControlName="message"
+              rows="6"
+              placeholder="Share your experience, achievements, and how the school helped shape your future..."
+            ></textarea>
+            <div class="character-count">
+              {{ testimonialForm.get("message")?.value?.length || 0 }}/1000
+              characters
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Overall Rating *</label>
+            <div class="rating-input">
+              <button
+                type="button"
+                *ngFor="let star of [1, 2, 3, 4, 5]"
+                class="star-button"
+                [class.filled]="
+                  star <= (testimonialForm.get('rating')?.value || 0)
+                "
+                (click)="setRating('testimonial', star)"
+              >
+                ⭐
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="photo-upload">Photo (Optional)</label>
+            <input
+              type="file"
+              id="photo-upload"
+              accept="image/*"
+              (change)="onFileSelect($event)"
+            />
+            <small
+              >Upload your photo to make your testimonial more personal</small
+            >
+          </div>
+
+          <div class="form-actions">
+            <button
+              type="submit"
+              class="btn-primary"
+              [disabled]="testimonialForm.invalid"
+            >
+              <span *ngIf="!isSubmitting">Submit Testimonial</span>
+              <span *ngIf="isSubmitting">Submitting...</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback Form -->
+  <div class="content-section" *ngIf="activeTab === 'feedback'" [@fadeInOut]>
+    <div class="container">
+      <div class="form-container feedback-form">
+        <h2>Parent & Guardian Feedback</h2>
+        <p class="form-description">
+          Your feedback helps us provide better education and facilities
+        </p>
+
+        <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+          <div class="form-group">
+            <label>Feedback Type *</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" formControlName="type" value="parent" />
+                <span class="radio-custom"></span>
+                Parent/Guardian
+              </label>
+              <label class="radio-label">
+                <input type="radio" formControlName="type" value="guest" />
+                <span class="radio-custom"></span>
+                Visitor/Guest
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" formControlName="isAnonymous" />
+              Submit anonymously
+            </label>
+          </div>
+
+          <div
+            class="form-grid"
+            *ngIf="!feedbackForm.get('isAnonymous')?.value"
+          >
+            <div class="form-group">
+              <label for="feedback-name">Name *</label>
+              <input
+                type="text"
+                id="feedback-name"
+                formControlName="name"
+                placeholder="Your full name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="feedback-email">Email Address *</label>
+              <input
+                type="email"
+                id="feedback-email"
+                formControlName="email"
+                placeholder="your.email@example.com"
+              />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="category">Category *</label>
+              <select id="category" formControlName="category">
+                <option value="">Select Category</option>
+                <option value="academics">Academics & Teaching</option>
+                <option value="facilities">Facilities & Infrastructure</option>
+                <option value="staff">Staff & Administration</option>
+                <option value="extracurricular">
+                  Extra-curricular Activities
+                </option>
+                <option value="communication">Communication</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <input
+                type="text"
+                id="subject"
+                formControlName="subject"
+                placeholder="Brief subject of your feedback"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-message">Your Feedback *</label>
+            <textarea
+              id="feedback-message"
+              formControlName="message"
+              rows="5"
+              placeholder="Please share your detailed feedback, suggestions, or concerns..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Overall Satisfaction *</label>
+            <div class="rating-input">
+              <button
+                type="button"
+                *ngFor="let star of [1, 2, 3, 4, 5]"
+                class="star-button"
+                [class.filled]="
+                  star <= (feedbackForm.get('rating')?.value || 0)
+                "
+                (click)="setRating('feedback', star)"
+              >
+                ⭐
+              </button>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button
+              type="submit"
+              class="btn-primary"
+              [disabled]="feedbackForm.invalid"
+            >
+              <span *ngIf="!isSubmitting">Submit Feedback</span>
+              <span *ngIf="isSubmitting">Submitting...</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Testimonials -->
+  <div
+    class="content-section"
+    *ngIf="activeTab === 'view-testimonials'"
+    [@fadeInOut]
+  >
+    <div class="container">
+      <h2>What Our Alumni Say</h2>
+
+      <!-- Featured Testimonials -->
+      <div
+        class="featured-testimonials"
+        *ngIf="featuredTestimonials.length > 0"
+      >
+        <h3>Featured Stories</h3>
+        <div class="testimonial-grid featured">
+          <div
+            class="testimonial-card featured"
+            *ngFor="let testimonial of featuredTestimonials"
+          >
+            <div class="testimonial-header">
+              <div class="avatar">
+                <img
+                  *ngIf="testimonial.photo"
+                  [src]="testimonial.photo"
+                  [alt]="testimonial.name"
+                />
+                <div *ngIf="!testimonial.photo" class="avatar-placeholder">
+                  {{ testimonial.name.charAt(0) }}
+                </div>
+              </div>
+              <div class="testimonial-info">
+                <h4>{{ testimonial.name }}</h4>
+                <p>
+                  Class of {{ testimonial.graduationYear }} •
+                  {{ testimonial.course }}
+                </p>
+                <div class="rating">
+                  <span
+                    *ngFor="let star of [1, 2, 3, 4, 5]"
+                    class="star"
+                    [class.filled]="star <= testimonial.rating"
+                    >⭐</span
+                  >
+                </div>
+              </div>
+              <div class="verified-badge" *ngIf="testimonial.isVerified">✓</div>
+            </div>
+            <div class="testimonial-content">
+              <p>{{ testimonial.message }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- All Testimonials -->
+      <div class="all-testimonials">
+        <h3>All Testimonials</h3>
+        <div class="testimonial-grid">
+          <div
+            class="testimonial-card"
+            *ngFor="let testimonial of displayedTestimonials"
+          >
+            <div class="testimonial-header">
+              <div class="avatar">
+                <img
+                  *ngIf="testimonial.photo"
+                  [src]="testimonial.photo"
+                  [alt]="testimonial.name"
+                />
+                <div *ngIf="!testimonial.photo" class="avatar-placeholder">
+                  {{ testimonial.name.charAt(0) }}
+                </div>
+              </div>
+              <div class="testimonial-info">
+                <h4>{{ testimonial.name }}</h4>
+                <p>
+                  Class of {{ testimonial.graduationYear }} •
+                  {{ testimonial.course }}
+                </p>
+                <div class="rating">
+                  <span
+                    *ngFor="let star of [1, 2, 3, 4, 5]"
+                    class="star"
+                    [class.filled]="star <= testimonial.rating"
+                    >⭐</span
+                  >
+                </div>
+              </div>
+              <div class="verified-badge" *ngIf="testimonial.isVerified">✓</div>
+            </div>
+            <div class="testimonial-content">
+              <p>{{ testimonial.message }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Messages -->
+  <div class="success-message" *ngIf="showSuccessMessage" [@fadeInOut]>
+    <div class="container">
+      <div class="success-content">
+        <div class="success-icon">✅</div>
+        <h3>Thank You!</h3>
+        <p>{{ successMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>

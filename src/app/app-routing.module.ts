@@ -28,6 +28,7 @@ import { AdminRouteGuard } from './core/guards/auth.guard';
 import { LoginGuard } from './core/guards/login.guard';
 import { NewAnnouncementPageComponent } from './features/announcement-page/new-announcement-admin/new-annoucement-admin.component';
 import { EventsVideoComponent } from './features/events-video/events-video.component';
+import { FeedbackSystemComponent } from './features/feedback/feedback-system/feedback-system.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,7 @@ const routes: Routes = [
     path: 'events-video',
     component: EventsVideoComponent,
   },
+  { path: 'feedback', component: FeedbackSystemComponent },
   {
     path: 'kalabharati',
     component: KalabharatiComponent,
