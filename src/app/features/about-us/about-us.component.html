@@ -303,21 +303,17 @@
             </tr>
           </tbody>
         </table>
+      </section>
 
-        <table class="table table-responsive table-striped mt-5 col-auto">
-          <thead>
-            <tr class="all-caps">
-              <th>Name</th>
-              <th>Qualification</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of faculty">
-              <td>{{ item.name }}</td>
-              <td>{{ item.qualification }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <section id="faculty-pdf">
+        <div class="container pdf-container mt-2">
+          <pdf-viewer
+            [src]="'../../../../assets/pdf/faculty-2025.pdf'"
+            [render-text]="true"
+            [original-size]="false"
+            style="display: block"
+          ></pdf-viewer>
+        </div>
       </section>
 
       <section id="non-faculty">
