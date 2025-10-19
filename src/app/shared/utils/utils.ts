@@ -2,7 +2,7 @@ export const prodUrl: string = 'https://bvbmysuru.com';
 export const stageUrl: string = 'https://chetanprojects.online'; //'https://bvbmysuru.com';
 // export const devUrl: string = 'http://localhost:5000';
 export const devUrl: string = 'http://localhost:8085';
-export const baseUrl: string = stageUrl;
+export const baseUrl: string = prodUrl;
 export const baseImageUrl: string = baseUrl + '/uploads';
 
 export const Testimonials = [

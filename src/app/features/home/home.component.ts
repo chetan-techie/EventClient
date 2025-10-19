@@ -25,6 +25,58 @@ export class HomeComponent implements OnInit {
     '../../../assets/carousel/007.jpg',
   ];
   testimonials: any = [];
+  hallOfFameEntries = [
+    {
+      id: 1,
+      studentName: 'Deekshitha Salagundi',
+      class: '10C',
+      achievement:
+        'Selected for National Level YIP which will be held in Delhi',
+      imageUrl: '../../../assets/hallofFame/deekshitha10C.jpg',
+    },
+    {
+      id: 2,
+      studentName: 'Vaibhav Vittal',
+      class: '9B',
+      achievement: 'Selected for state level wrestling competition',
+      imageUrl: '../../../assets/hallofFame/vaibhav9b.jpg',
+    },
+    {
+      id: 3,
+      studentName: 'Sushruth',
+      class: '10C',
+      achievement: 'Selected for state level wrestling competition',
+      imageUrl: '../../../assets/hallofFame/sushruth10C.jpg',
+    },
+    {
+      id: 4,
+      studentName: 'Srujan S',
+      class: '10A',
+      achievement: 'Selected for state level Handball',
+      imageUrl: '../../../assets/hallofFame/srujan10A.jpg',
+    },
+    {
+      id: 5,
+      studentName: 'Gowrishree S',
+      class: '9C',
+      achievement: 'Group Level Best Cadet in NCC 3 Kar Battalion',
+      imageUrl: '../../../assets/hallofFame/thumbnail1.jpg',
+    },
+    {
+      id: 6,
+      studentName: 'Pareekshith Raj P',
+      class: '8C',
+      achievement: 'Bagged prizes in Bhagavad Gita and Singing Competitions',
+      imageUrl: '../../../assets/hallofFame/thumbnail2.jpg',
+    },
+    {
+      id: 7,
+      studentName: 'Pranamya Prasad',
+      class: '8C',
+      achievement: 'Bagged prizes in Karate Competitions',
+      imageUrl: '../../../assets/hallofFame/thumbnail3.jpg',
+    },
+  ];
 
   swiper: any = {};
   isLoading: boolean = true;
@@ -118,6 +170,10 @@ export class HomeComponent implements OnInit {
       return;
     }
     this.router.navigate(['/gallery-events']);
+  }
+
+  navigateToHoF(): void {
+    this.router.navigate(['/hallOfFame']);
   }
 
   private extractYouTubeVideoId(url: string | undefined): string | null {
