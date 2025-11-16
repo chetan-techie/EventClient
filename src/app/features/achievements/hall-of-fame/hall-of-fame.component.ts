@@ -31,28 +31,31 @@ export class HallOfFameComponent implements OnInit {
         studentName: 'Deekshitha Salagundi',
         class: '10C',
         achievement:
-          'Selected for National Level YIP which will be held in Delhi',
+          'Selected for National Level Young Indians Parliament (YIP) -2025 which will be held in Delhi.',
         imageUrl: '../../../assets/hallofFame/deekshitha10C.jpg',
       },
       {
         id: 2,
         studentName: 'Vaibhav Vittal',
         class: '9B',
-        achievement: 'Selected for state level wrestling competition',
+        achievement:
+          'Selected for state level wrestling competition - 2025 organised by : Department of Physical Education.',
         imageUrl: '../../../assets/hallofFame/vaibhav9b.jpg',
       },
       {
         id: 3,
         studentName: 'Sushruth',
         class: '10C',
-        achievement: 'Selected for state level wrestling competition',
+        achievement:
+          'Selected for state level wrestling competition - 2025. Organised by : Department of Physical Education',
         imageUrl: '../../../assets/hallofFame/sushruth10C.jpg',
       },
       {
         id: 4,
         studentName: 'Srujan S',
         class: '10A',
-        achievement: 'Selected for state level Handball',
+        achievement:
+          'Selected for state level Handball-2025. Organised by : Department of Physical Education',
         imageUrl: '../../../assets/hallofFame/srujan10A.jpg',
       },
       {

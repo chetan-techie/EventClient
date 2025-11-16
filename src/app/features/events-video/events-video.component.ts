@@ -58,10 +58,10 @@ export class EventsVideoComponent implements OnInit, OnDestroy {
     this.events.forEach((event) => {
       const videoId = this.extractYouTubeVideoId(event.eventURL);
       if (videoId) {
-        // Cache thumbnail URL
+        // Try maxresdefault first, template will handle fallback
         this.thumbnailUrls.set(
           event.id,
-          `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+          `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
         );
 
         // Cache embed URL
@@ -72,6 +72,21 @@ export class EventsVideoComponent implements OnInit, OnDestroy {
         );
       }
     });
+  }
+
+  // Add this method
+  onThumbnailError(event: Event, eventId: string) {
+    const videoId = this.extractYouTubeVideoId(
+      this.events.find((e) => e.id === eventId)?.eventURL || ''
+    );
+    if (videoId) {
+      // Fallback to hqdefault
+      this.thumbnailUrls.set(
+        eventId,
+        `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+      );
+      this.cdr.markForCheck();
+    }
   }
 
   trackByEventId(index: number, event: SchoolEvent): string {

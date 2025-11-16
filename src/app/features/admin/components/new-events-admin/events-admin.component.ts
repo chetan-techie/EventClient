@@ -250,7 +250,7 @@ export class EventsAdminComponent implements OnInit {
       return;
     }
 
-    const rawDate = this.eventsForm.get('eventDate')?.value;
+    const rawDate = new Date(this.eventsForm.get('eventDate')?.value);
     const eventDate = rawDate.toLocaleDateString('en-CA');
 
     this.isLoading = true;

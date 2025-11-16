@@ -310,7 +310,7 @@
 
 .card-list .card-link .card-image {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 20 / 18;
   object-fit: cover;
   object-position: top center;
   border-radius: 10px;

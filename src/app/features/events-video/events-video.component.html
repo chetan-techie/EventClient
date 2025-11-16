@@ -42,6 +42,7 @@
             [alt]="event.name + ' thumbnail'"
             class="thumbnail-image"
             loading="lazy"
+            (error)="onThumbnailError($event, event.id)"
           />
           <div class="play-overlay">
             <div class="play-button">
