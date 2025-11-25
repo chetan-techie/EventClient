@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { SocialMediaLinksComponent } from './social-media-links/social-media-links.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
@@ -37,6 +37,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     BrowserModule,
     CommonModule,
+    FormsModule,
     NgbModule,
     MatCardModule,
     MatTableModule,
@@ -65,6 +66,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CardsTileComponent,
     SocialMediaLinksComponent,
     ReactiveFormsModule,
+    FormsModule,
     FooterComponent,
     ImgCardComponent,
     SafePipe,

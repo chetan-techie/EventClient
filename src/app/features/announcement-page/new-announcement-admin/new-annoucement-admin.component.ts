@@ -7,7 +7,7 @@ import { AnnouncementService } from '../../../core/services/announcement.service
   styleUrl: './new-announcement-admin.component.scss',
 })
 export class NewAnnouncementPageComponent implements OnInit {
-  openForm: boolean = false;
+  openForm: boolean = true;
   data: Array<any> = [];
   filteredData: Array<any> = [];
   editAnnouncement: any = {};

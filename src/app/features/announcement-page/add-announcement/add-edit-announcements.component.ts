@@ -1,112 +1,117 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnInit,
-  OnChanges,
-} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-export interface Announcement {
-  id?: number;
-  announcement: string;
-  status: boolean;
-  dateTime: Date;
-}
 
 @Component({
   selector: 'app-add-edit-announcements',
   templateUrl: './add-edit-announcements.component.html',
-  styleUrls: ['./add-edit-announcements.component.css'],
+  styleUrls: ['./add-edit-announcements.component.scss'],
 })
-export class AddEditAnnouncementsComponent implements OnInit, OnChanges {
-  @Input() data: Announcement | null = null;
-  @Output() updateData = new EventEmitter<{
-    action: string;
-    data: Announcement;
-  }>();
+export class AddEditAnnouncementsComponent implements OnInit {
+  @Input() data: any = {};
+  @Output() updateData = new EventEmitter<any>();
 
-  announcementForm: FormGroup;
+  announcementForm!: FormGroup;
+  priorities = ['Low', 'Normal', 'Medium', 'High'];
   isEditMode = false;
 
-  constructor(private fb: FormBuilder) {
-    this.announcementForm = this.fb.group({
-      announcement: ['', [Validators.required, Validators.minLength(3)]],
-      status: [true],
-    });
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.initializeForm();
+    this.initForm();
+    if (this.data && this.data.id) {
+      this.isEditMode = true;
+      this.populateForm();
+    }
   }
 
   ngOnChanges(): void {
-    this.initializeForm();
+    if (this.announcementForm) {
+      if (this.data && this.data.id) {
+        this.isEditMode = true;
+        this.populateForm();
+      } else {
+        this.isEditMode = false;
+        this.announcementForm.reset({
+          status: true,
+          priority: 'Normal',
+        });
+      }
+    }
   }
 
-  private initializeForm(): void {
-    if (this.data) {
-      this.isEditMode = true;
-      this.announcementForm.patchValue({
-        announcement: this.data.announcement,
-        status: this.data.status,
-      });
-    } else {
-      this.isEditMode = false;
-      this.announcementForm.reset({
-        announcement: '',
-        status: true,
-      });
-    }
+  initForm(): void {
+    this.announcementForm = this.fb.group({
+      id: [null],
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(100),
+        ],
+      ],
+      announcement: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(1000),
+        ],
+      ],
+      priority: ['Normal', Validators.required],
+      status: [true, Validators.required],
+      dateTime: [new Date()],
+      updatedBy: ['Admin'],
+    });
+  }
+
+  populateForm(): void {
+    this.announcementForm.patchValue({
+      id: this.data.id,
+      title: this.data.title || '',
+      announcement: this.data.announcement || '',
+      priority: this.data.priority || 'Normal',
+      status: this.data.status !== undefined ? this.data.status : true,
+      dateTime: this.data.dateTime || new Date(),
+      updatedBy: this.data.updatedBy || 'Admin',
+    });
   }
 
   onSubmit(): void {
     if (this.announcementForm.valid) {
-      const formValue = this.announcementForm.value;
-      const announcementData: Announcement = {
-        announcement: formValue.announcement,
-        status: formValue.status,
-        dateTime: new Date(),
+      const formValue = {
+        ...this.announcementForm.value,
+        dateTime: new Date().toISOString(),
       };
-
-      if (this.isEditMode && this.data?.id) {
-        announcementData.id = this.data.id;
-        this.updateData.emit({ action: 'update', data: announcementData });
-      } else {
-        this.updateData.emit({ action: 'add', data: announcementData });
-      }
-
-      this.resetForm();
+      this.updateData.emit(formValue);
     } else {
-      this.markFormGroupTouched();
+      this.markFormGroupTouched(this.announcementForm);
     }
   }
 
   onCancel(): void {
-    this.resetForm();
-    this.updateData.emit({ action: 'cancel', data: {} as Announcement });
-  }
-
-  private resetForm(): void {
     this.announcementForm.reset({
-      announcement: '',
       status: true,
+      priority: 'Normal',
     });
-    this.isEditMode = false;
   }
 
-  private markFormGroupTouched(): void {
-    Object.keys(this.announcementForm.controls).forEach((key) => {
-      const control = this.announcementForm.get(key);
+  private markFormGroupTouched(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach((key) => {
+      const control = formGroup.get(key);
       control?.markAsTouched();
     });
   }
 
-  get announcement() {
-    return this.announcementForm.get('announcement');
+  get f() {
+    return this.announcementForm.controls;
   }
-  get status() {
-    return this.announcementForm.get('status');
+
+  getCharacterCount(field: string): number {
+    return this.announcementForm.get(field)?.value?.length || 0;
+  }
+
+  getMaxLength(field: string): number {
+    return field === 'title' ? 100 : 1000;
   }
 }

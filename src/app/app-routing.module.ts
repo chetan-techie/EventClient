@@ -29,6 +29,7 @@ import { LoginGuard } from './core/guards/login.guard';
 import { NewAnnouncementPageComponent } from './features/announcement-page/new-announcement-admin/new-annoucement-admin.component';
 import { EventsVideoComponent } from './features/events-video/events-video.component';
 import { FeedbackSystemComponent } from './features/feedback/feedback-system/feedback-system.component';
+import { MonthlyReportsComponent } from './features/monthly-reports/monthly-reports.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,10 @@ const routes: Routes = [
   {
     path: 'events-video',
     component: EventsVideoComponent,
+  },
+  {
+    path: 'reports',
+    component: MonthlyReportsComponent,
   },
   { path: 'feedback', component: FeedbackSystemComponent },
   {

@@ -1,0 +1,70 @@
+<div class="container pt-5">
+  <!-- Page Header -->
+  <div class="container-block">
+    <h2 class="page-title bottom-line">MONTHLY REPORTS</h2>
+    <p class="mt-1" role="alert">
+      Access our comprehensive monthly reports that provide detailed insights
+      into academic activities, student performance, and institutional
+      achievements. These reports are systematically organized by year for easy
+      reference and review.
+    </p>
+  </div>
+
+  <div class="reports-section" *ngFor="let yearData of yearlyReports">
+    <h2 class="year-heading">{{ yearData.year }}</h2>
+
+    <div class="reports-grid">
+      <div
+        class="report-card"
+        *ngFor="let report of yearData.reports"
+        (click)="openReport(report)"
+      >
+        <div class="card-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            ></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+        </div>
+        <h3 class="card-title">{{ report.month }}</h3>
+        <p class="card-subtitle">Monthly Report</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Modal -->
+<div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
+  <div class="popup-container" (click)="$event.stopPropagation()">
+    <div class="popup-header">
+      <h3>{{ selectedReport?.title }}</h3>
+      <button class="close-btn" (click)="closePopup()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="popup-body">
+      <iframe
+        *ngIf="selectedReport"
+        [src]="selectedReport.pdfUrl | safe : 'resourceUrl'"
+        frameborder="0"
+      >
+      </iframe>
+    </div>
+  </div>
+</div>

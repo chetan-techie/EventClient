@@ -8,8 +8,6 @@ import { AchievementsComponent } from './achievements/achievements.component';
 import { CurricularComponent } from './curricular/curricular.component';
 import { AdminComponent } from './admin/admin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddEditAnnouncementsComponent } from './add-edit-announcements/add-edit-announcements.component';
-import { AnnouncementPageComponent } from './announcement-page/announcement-page.component';
 import { GalleryEventsComponent } from './gallery-events/gallery-events.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { LeadersListComponent } from './leaders-list/leaders-list.component';
@@ -24,10 +22,11 @@ import { KalabharatiModule } from './kalabharati/kalabharati.module';
 import { EventsAdminComponent } from './admin/components/events-admin/events-admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsModule } from './admin/components/new-events-admin/module_imports';
-import { NewAnnouncementPageComponent } from './announcement-page/new-announcement-admin/new-annoucement-admin.component';
 import { EventsVideoComponent } from './events-video/events-video.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FeedbackSystemModule } from './feedback/feedback-system.module';
+import { AnnouncementModule } from './announcement-page/announcement.module';
+import { MonthlyReportsComponent } from './monthly-reports/monthly-reports.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +37,6 @@ import { FeedbackSystemModule } from './feedback/feedback-system.module';
     CurricularComponent,
     AdminComponent,
     PageNotFoundComponent,
-    AddEditAnnouncementsComponent,
-    AnnouncementPageComponent,
-    NewAnnouncementPageComponent,
     GalleryEventsComponent,
     AdminLoginComponent,
     LeadersListComponent,
@@ -53,6 +49,7 @@ import { FeedbackSystemModule } from './feedback/feedback-system.module';
     CalendarEventsComponent,
     EventsAdminComponent,
     EventsVideoComponent,
+    MonthlyReportsComponent,
   ],
   imports: [
     SharedModule,
@@ -62,6 +59,7 @@ import { FeedbackSystemModule } from './feedback/feedback-system.module';
     EventsModule,
     PdfViewerModule,
     FeedbackSystemModule,
+    AnnouncementModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

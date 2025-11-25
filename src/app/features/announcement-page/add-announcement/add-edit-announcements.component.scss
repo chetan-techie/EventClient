@@ -1,152 +1,305 @@
-.announcement-form-container {
-  min-width: 400px;
-  margin-left: 20px;
+/* Announcement Form Styles */
+.announcement-form {
+  padding: 0;
 }
 
-.card {
-  border: 1px solid #dee2e6;
-  border-radius: 0.375rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-.card-header {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-  padding: 1rem;
-}
-
-.card-title {
-  font-weight: 500;
-  color: #495057;
-}
-
-.card-body {
-  padding: 1.5rem;
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
 .form-label {
-  font-weight: 500;
+  font-weight: 600;
+  color: #2c3e50;
   margin-bottom: 0.5rem;
-  color: #495057;
-}
-
-.form-control {
-  border: 1px solid #ced4da;
-  border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-control:focus {
-  border-color: #86b7fe;
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-.form-control.is-invalid {
-  border-color: #dc3545;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right calc(0.375em + 0.1875rem) center;
-  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-}
-
-.invalid-feedback {
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 0.875em;
-  color: #dc3545;
-  display: block;
-}
-
-.form-check {
   display: flex;
   align-items: center;
-  padding-left: 0;
+  font-size: 0.95rem;
+}
+
+.form-label i {
+  color: #667eea;
+}
+
+.form-control,
+.form-select {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+  outline: none;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #dc3545;
+}
+
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* Character Counter */
+.char-count {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+/* Textarea */
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* Invalid Feedback */
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.invalid-feedback small {
+  display: flex;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+/* Status Switch */
+.status-switch {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
 }
 
 .form-check-input {
-  margin-right: 0.5rem;
-  margin-left: 0;
+  width: 3rem;
+  height: 1.5rem;
+  cursor: pointer;
+  border: 2px solid #dee2e6;
+}
+
+.form-check-input:checked {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
 .form-check-label {
-  font-weight: 500;
-  margin-bottom: 0;
-}
-
-.text-muted {
-  color: #6c757d !important;
-}
-
-.gap-2 {
-  gap: 0.5rem;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  border-radius: 0.375rem;
-  border: 1px solid transparent;
-  transition: all 0.15s ease-in-out;
+  margin-left: 0.5rem;
   cursor: pointer;
 }
 
-.btn:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
+.form-check-label .badge {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+}
+
+.form-text {
+  font-size: 0.8rem;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #e9ecef;
+}
+
+.form-actions .btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  color: white;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
+  background: linear-gradient(135deg, #764ba2, #667eea);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+  background: #6c757d;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background: #6c757d;
+  border: none;
+  color: white;
 }
 
 .btn-secondary:hover {
-  background-color: #5c636a;
-  border-color: #565e64;
+  background: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
 }
 
-.btn i {
-  margin-right: 0.5rem;
+/* Form Summary */
+.form-summary {
+  animation: slideDown 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .announcement-form-container {
-    min-width: 100%;
-    margin-left: 0;
-    margin-top: 20px;
-  }
-
-  .card-body {
-    padding: 1rem;
-  }
+.form-summary .alert {
+  border-radius: 8px;
+  border: none;
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  border-left: 4px solid #667eea;
 }
 
-/* Animation for form appearance */
-.announcement-form-container {
-  animation: slideIn 0.3s ease-out;
+/* Priority Select Styling */
+.form-select option {
+  padding: 0.5rem;
 }
 
-@keyframes slideIn {
+/* Animations */
+@keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
+}
+
+/* Focus Visible for Accessibility */
+.form-control:focus-visible,
+.form-select:focus-visible,
+.form-check-input:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Loading State for Submit Button */
+.btn.loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Validation States */
+.form-control.ng-touched.ng-valid {
+  border-color: #28a745;
+}
+
+.form-control.ng-touched.ng-invalid {
+  border-color: #dc3545;
+}
+
+/* Placeholder Styling */
+.form-control::placeholder,
+textarea::placeholder {
+  color: #adb5bd;
+  font-style: italic;
+}
+
+/* Required Asterisk */
+.text-danger {
+  color: #dc3545;
+  font-weight: 700;
+}
+
+/* Hover Effects */
+.form-control:hover:not(:focus),
+.form-select:hover:not(:focus) {
+  border-color: #667eea;
+}
+
+/* Success State */
+.form-control.is-valid {
+  border-color: #28a745;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  padding-right: calc(1.5em + 0.75rem);
+}
+
+/* Custom Scrollbar for Textarea */
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
