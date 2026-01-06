@@ -7,19 +7,27 @@ export const baseImageUrl: string = baseUrl + '/uploads';
 
 export const Testimonials = [
   {
-    name: 'Dr. A.P.J. Abdul Kalam',
-    designation: 'Former President of India',
-    image: '../../../assets/what-they-say/apjjpg.jpg',
+    name: 'Shri Narendra Modi',
+    designation: "Hon'ble Prime Minister of India",
+    image: '../../../assets/what-they-say/n-modi.jpg',
     message:
-      'Bharatiya Vidya Bhavan is spreading the ever-lasting beauty of integration of multi-cultures and multi-philosophies with tolerance.',
+      'The multifaceted legacy of K. M. Munshi is a pride for the entire nation. As an inspiring freedom fighter and visionary leader, he had been a source of motivation for an entire generation. As an administrator and institution builder, his wide-reaching contributions will always be remembered. He was a true renaissance man who enriched the socio-cultural sphere of the country. Bharatiya Vidya Bhavan founded by him, also bears the hallmarks of this rich legacy. ',
     priority: 1,
   },
   {
-    name: 'Bharat Ratna Dr. C.V. Raman',
-    designation: 'Nobel Laureate',
-    image: '../../../assets/what-they-say/cv-raman.jpg',
+    name: 'Smt. Droupadi Murmu',
+    designation: "Hon'ble President of India",
+    image: '../../../assets/what-they-say/d-murmu.jpg',
     message:
-      "The wide range of the Bharatiya Vidya Bhavan's activities and the success they have achieved can only be described as most remarkable.",
+      'With the blessings of Mahatma Gandhi, K. M. Munshiji had established Bharatiya Vidya Bhavan for re-establishing Indian values in the society. He had played an important role in the making of the Indian Constitution. He was a devout messenger of Indian culture. I am happy to know that during the last eight decades or so, BVB- has developed into a great intellectual, cultural and educational institution. Throughout the world more than 350 institutions of BVB are imparting modern education. They are also playing an important role for the preservation and propagation of Indian life and values and traditions.',
+    priority: 1,
+  },
+  {
+    name: 'His Holiness The Dalai Lama',
+    designation: 'The 14th Dalai Lama of Tibet',
+    image: '../../../assets/what-they-say/d-lama.jpg',
+    message:
+      "I am encouraged to see that the Bharatiya Vidya Bhavan continues to thrive in its various activities, seeking to preserve and promote India's spiritual, ethical, social, and educational heritage. Religious harmony is still very much alive in India and I feel it is important that the rest of the world take note and learn from that. This is something that the Bhavan makes a special effort to foster with its emphasis on Sarva Dharma Samabhav, equal respect for all religions, and which I too wholeheartedly support.",
     priority: 1,
   },
   {
@@ -29,30 +37,22 @@ export const Testimonials = [
     image: '../../../assets/what-they-say/bill-gates.jpg',
     message:
       "My faith in India is well placed...Bhavan's Gandhi Institute's Project of making even poor and disadvantaged computer savvy was a model to the world and this Privilege of being involved in it spurs me on.",
-    priority: 1,
-  },
-  {
-    name: 'Smt. Droupadi Murmu',
-    designation: "Hon'ble President of India",
-    image: '../../../assets/what-they-say/d-murmu.jpg',
-    message:
-      'With the blessings of Mahatma Gandhi, K. M. Munshiji had established Bharatiya Vidya Bhavan for re-establishing Indian values in the society. He had played an important role in the making of the Indian Constitution. He was a devout messenger of Indian culture. I am happy to know that during the last eight decades or so, BVB- has developed into a great intellectual, cultural and educational institution. Throughout the world more than 350 institutions of BVB are imparting modern education. They are also playing an important role for the preservation and propagation of Indian life and values and traditions.',
     priority: 2,
   },
   {
-    name: 'Shri Narendra Modi',
-    designation: "Hon'ble Prime Minister of India",
-    image: '../../../assets/what-they-say/n-modi.jpg',
+    name: 'Bharat Ratna Dr. C.V. Raman',
+    designation: 'Nobel Laureate',
+    image: '../../../assets/what-they-say/cv-raman.jpg',
     message:
-      'The multifaceted legacy of K. M. Munshi is a pride for the entire nation. As an inspiring freedom fighter and visionary leader, he had been a source of motivation for an entire generation. As an administrator and institution builder, his wide-reaching contributions will always be remembered. He was a true renaissance man who enriched the socio-cultural sphere of the country. Bharatiya Vidya Bhavan founded by him, also bears the hallmarks of this rich legacy. ',
+      "The wide range of the Bharatiya Vidya Bhavan's activities and the success they have achieved can only be described as most remarkable.",
     priority: 2,
   },
   {
-    name: 'His Holiness The Dalai Lama',
-    designation: 'The 14th Dalai Lama of Tibet',
-    image: '../../../assets/what-they-say/d-lama.jpg',
+    name: 'Dr. A.P.J. Abdul Kalam',
+    designation: 'Former President of India',
+    image: '../../../assets/what-they-say/apjjpg.jpg',
     message:
-      "I am encouraged to see that the Bharatiya Vidya Bhavan continues to thrive in its various activities, seeking to preserve and promote India's spiritual, ethical, social, and educational heritage. Religious harmony is still very much alive in India and I feel it is important that the rest of the world take note and learn from that. This is something that the Bhavan makes a special effort to foster with its emphasis on Sarva Dharma Samabhav, equal respect for all religions, and which I too wholeheartedly support.",
+      'Bharatiya Vidya Bhavan is spreading the ever-lasting beauty of integration of multi-cultures and multi-philosophies with tolerance.',
     priority: 2,
   },
   {
@@ -393,19 +393,19 @@ export const nonFaculty = [
   },
   {
     designation: 'Accounts Officer',
-    name: ' Smt. Tejashwini M.',
+    name: ' Smt. Shruthi BP',
   },
   {
     designation: 'Office Assistants',
-    name: ' Sri Prakash K. V. ; Smt. Chandrakala S. N; Kum. Shreeraksha P.; Smt. Geetha D',
+    name: ' Sri Prakash K. V. ; Smt. Chandrakala S. N; Kum. Shreeraksha P.; Smt. Thejashwini',
   },
   {
     designation: 'Teacher Assistants',
-    name: ' Smt. Shobha R.; Smt. Jayalakshmi R. ; Smt. Savitha M.; Smt. Chaya M.; Smt. Leelavathi C.B.; Smt. Shruthi D.',
+    name: ' Smt. Shobha R.; Smt. Jayalakshmi R. ; Smt. Savitha M.; Smt. Chaya M.; Smt. Leelavathi C.B.; Smt. Arathi.',
   },
   {
     designation: 'Library Assistant',
-    name: ' Deepashri S',
+    name: 'Smt. Girija ',
   },
 ];
 
@@ -413,51 +413,51 @@ export const busdrivers = [
   {
     routeno: 1,
     busno: 'KA09 C 4753',
-    driver: 'Sunil M. D.',
-    mob: 9902313228,
-    destination: 'KHB Colony',
+    driver: 'Kaverappa',
+    mob: 8105251633,
+    destination: 'KHB',
   },
   {
     routeno: 2,
     busno: 'KA09 C 4752',
-    driver: 'Krishnappa G.',
-    mob: 9900745612,
-    destination: 'Hebbal',
+    driver: 'Sudharshan',
+    mob: 8971664429,
+    destination: 'FTS / Bannimnatap',
   },
   {
     routeno: 3,
     busno: 'KA09 AA 4649',
-    driver: 'Vasudev',
-    mob: 8105724099,
+    driver: 'Madhusudhan',
+    mob: 9036516555,
     destination: 'KRS',
   },
   {
     routeno: 4,
-    busno: 'KA09 AA 4754',
-    driver: 'Vijayakumar',
-    mob: 9916604486,
-    destination: 'Bannimantap/FTS',
+    busno: 'KA09 C 4754',
+    driver: 'Eshwar',
+    mob: 9448609063,
+    destination: 'Hebbal',
   },
   {
     routeno: 5,
     busno: 'KA09 C 7902',
-    driver: 'Kaverappa',
-    mob: 8105251633,
-    destination: 'Bilikere',
+    driver: 'Chandra Nayak',
+    mob: 8660610956,
+    destination: 'Belikere',
   },
   {
     routeno: 6,
     busno: 'KA09 D 4470',
-    driver: 'Ramu',
-    mob: 9886548206,
-    destination: 'Kuvempunagar',
+    driver: 'Jayaram',
+    mob: 9731514070,
+    destination: 'Kuvempu Nagar/ Bogadi',
   },
   {
     routeno: 7,
-    busno: 'KA09 C 577',
-    driver: 'R Mahadev',
+    busno: 'KA09 C 0577',
+    driver: 'Mahadev',
     mob: 9741321577,
-    destination: 'JP Nagar/ Shantala',
+    destination: 'JP Nagar',
   },
 ];
 

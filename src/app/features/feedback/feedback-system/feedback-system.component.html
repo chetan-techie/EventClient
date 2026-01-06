@@ -40,11 +40,7 @@
   </div>
 
   <!-- Testimonial Form -->
-  <div
-    class="content-section"
-    *ngIf="activeTab === 'testimonials'"
-    [@fadeInOut]
-  >
+  <div class="content-section" *ngIf="activeTab === 'alumini'" [@fadeInOut]>
     <div class="container">
       <div class="form-container testimonial-form">
         <h2>Share Your Success Story</h2>
@@ -71,26 +67,6 @@
               >
                 Name is required
               </div>
-            </div>
-
-            <div class="form-group">
-              <label for="graduation-year">Graduation Year *</label>
-              <select id="graduation-year" formControlName="graduationYear">
-                <option value="">Select Year</option>
-                <option *ngFor="let year of graduationYears" [value]="year">
-                  {{ year }}
-                </option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="course">Course/Stream *</label>
-              <input
-                type="text"
-                id="course"
-                formControlName="course"
-                placeholder="e.g., Computer Science, Arts, Commerce"
-              />
             </div>
 
             <div class="form-group">
@@ -133,19 +109,6 @@
                 ⭐
               </button>
             </div>
-          </div>
-
-          <div class="form-group">
-            <label for="photo-upload">Photo (Optional)</label>
-            <input
-              type="file"
-              id="photo-upload"
-              accept="image/*"
-              (change)="onFileSelect($event)"
-            />
-            <small
-              >Upload your photo to make your testimonial more personal</small
-            >
           </div>
 
           <div class="form-actions">
@@ -221,33 +184,6 @@
             </div>
           </div>
 
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="category">Category *</label>
-              <select id="category" formControlName="category">
-                <option value="">Select Category</option>
-                <option value="academics">Academics & Teaching</option>
-                <option value="facilities">Facilities & Infrastructure</option>
-                <option value="staff">Staff & Administration</option>
-                <option value="extracurricular">
-                  Extra-curricular Activities
-                </option>
-                <option value="communication">Communication</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="subject">Subject *</label>
-              <input
-                type="text"
-                id="subject"
-                formControlName="subject"
-                placeholder="Brief subject of your feedback"
-              />
-            </div>
-          </div>
-
           <div class="form-group">
             <label for="feedback-message">Your Feedback *</label>
             <textarea
@@ -311,22 +247,8 @@
             *ngFor="let testimonial of featuredTestimonials"
           >
             <div class="testimonial-header">
-              <div class="avatar">
-                <img
-                  *ngIf="testimonial.photo"
-                  [src]="testimonial.photo"
-                  [alt]="testimonial.name"
-                />
-                <div *ngIf="!testimonial.photo" class="avatar-placeholder">
-                  {{ testimonial.name.charAt(0) }}
-                </div>
-              </div>
               <div class="testimonial-info">
                 <h4>{{ testimonial.name }}</h4>
-                <p>
-                  Class of {{ testimonial.graduationYear }} •
-                  {{ testimonial.course }}
-                </p>
                 <div class="rating">
                   <span
                     *ngFor="let star of [1, 2, 3, 4, 5]"
@@ -354,22 +276,8 @@
             *ngFor="let testimonial of displayedTestimonials"
           >
             <div class="testimonial-header">
-              <div class="avatar">
-                <img
-                  *ngIf="testimonial.photo"
-                  [src]="testimonial.photo"
-                  [alt]="testimonial.name"
-                />
-                <div *ngIf="!testimonial.photo" class="avatar-placeholder">
-                  {{ testimonial.name.charAt(0) }}
-                </div>
-              </div>
               <div class="testimonial-info">
                 <h4>{{ testimonial.name }}</h4>
-                <p>
-                  Class of {{ testimonial.graduationYear }} •
-                  {{ testimonial.course }}
-                </p>
                 <div class="rating">
                   <span
                     *ngFor="let star of [1, 2, 3, 4, 5]"

@@ -8,15 +8,13 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { FeedbackService } from '../../../core/services/feedback.service';
 
 interface Testimonial {
   id: string;
   name: string;
-  graduationYear: number;
-  course: string;
   message: string;
   rating: number;
-  photo?: string;
   isVerified: boolean;
   isFeatured: boolean;
   createdAt: Date;
@@ -27,8 +25,6 @@ interface Feedback {
   type: 'parent' | 'guest';
   name?: string;
   email?: string;
-  category: string;
-  subject: string;
   message: string;
   rating: number;
   isAnonymous: boolean;
@@ -49,7 +45,7 @@ interface Feedback {
   ],
 })
 export class FeedbackSystemComponent implements OnInit {
-  activeTab: string = 'testimonials';
+  activeTab: string = 'alumini';
   testimonialForm: FormGroup;
   feedbackForm: FormGroup;
   isSubmitting: boolean = false;
@@ -62,12 +58,9 @@ export class FeedbackSystemComponent implements OnInit {
     {
       id: '1',
       name: 'Dr. Priya Sharma',
-      graduationYear: 2015,
-      course: 'Computer Science & Engineering',
       message:
         'The holistic education approach at Bharatiya Vidya Bhavan shaped not just my career but my character. The values instilled here have guided me through my journey as a software engineer at Microsoft and now as an entrepreneur.',
       rating: 5,
-      photo: '/assets/images/testimonials/priya.jpg',
       isVerified: true,
       isFeatured: true,
       createdAt: new Date('2024-01-15'),
@@ -75,12 +68,9 @@ export class FeedbackSystemComponent implements OnInit {
     {
       id: '2',
       name: 'Arjun Krishnamurthy',
-      graduationYear: 2018,
-      course: 'Commerce & Management',
       message:
         "The institution's emphasis on traditional values combined with modern education prepared me well for the corporate world. I am now a Chartered Accountant with one of the Big Four firms, thanks to the strong foundation laid here.",
       rating: 5,
-      photo: '/assets/images/testimonials/arjun.jpg',
       isVerified: true,
       isFeatured: true,
       createdAt: new Date('2024-01-10'),
@@ -89,9 +79,8 @@ export class FeedbackSystemComponent implements OnInit {
 
   displayedTestimonials: Testimonial[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private feedbservice: FeedbackService) {
     this.initializeForms();
-    this.generateGraduationYears();
   }
 
   ngOnInit() {
@@ -101,8 +90,6 @@ export class FeedbackSystemComponent implements OnInit {
   initializeForms() {
     this.testimonialForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
-      graduationYear: ['', Validators.required],
-      course: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       message: [
         '',
@@ -113,6 +100,7 @@ export class FeedbackSystemComponent implements OnInit {
         ],
       ],
       rating: [0, [Validators.required, Validators.min(1)]],
+      anonymous: [false],
     });
 
     this.feedbackForm = this.fb.group({
@@ -120,8 +108,6 @@ export class FeedbackSystemComponent implements OnInit {
       name: [''],
       email: [''],
       isAnonymous: [false],
-      category: ['', Validators.required],
-      subject: ['', Validators.required],
       message: ['', [Validators.required, Validators.minLength(20)]],
       rating: [0, [Validators.required, Validators.min(1)]],
     });
@@ -144,13 +130,6 @@ export class FeedbackSystemComponent implements OnInit {
         nameControl?.updateValueAndValidity();
         emailControl?.updateValueAndValidity();
       });
-  }
-
-  generateGraduationYears() {
-    const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year >= currentYear - 50; year--) {
-      this.graduationYears.push(year);
-    }
   }
 
   setActiveTab(tab: string) {
@@ -179,6 +158,21 @@ export class FeedbackSystemComponent implements OnInit {
 
       try {
         // Simulate API call
+        this.feedbservice
+          .submitTestimonial(this.testimonialForm.value)
+          .subscribe({
+            next: (response) => {
+              console.log('Testimonial submitted:', response);
+              this.showSuccess(
+                'Thank you for sharing your testimonial! Your submission has been received and will be reviewed by our team. Once approved, it will inspire future students.'
+              );
+              this.testimonialForm.reset();
+              this.setActiveTab('view-testimonials');
+            },
+            error: (error) => {
+              console.error('Error submitting testimonial:', error);
+            },
+          });
         await this.delay(2000);
 
         console.log('Testimonial submitted:', this.testimonialForm.value);
@@ -230,12 +224,9 @@ export class FeedbackSystemComponent implements OnInit {
   }
 
   loadTestimonials() {
-    // Simulate loading testimonials from API
-    // In production, replace with actual API call
-    this.displayedTestimonials = [
-      ...this.featuredTestimonials,
-      // Add more sample testimonials here
-    ];
+    this.feedbservice.testimonials$.subscribe((testimonials) => {
+      this.displayedTestimonials = testimonials;
+    });
   }
 
   private delay(ms: number): Promise<void> {

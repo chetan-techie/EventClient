@@ -31,6 +31,14 @@ export class HomeComponent implements OnInit {
       studentName: 'Deekshitha Salagundi',
       class: '10C',
       achievement:
+        'Awarded Certificate of Excellence at National-level YIP, Delhi for outstanding performance.',
+      imageUrl: '../../../assets/hallofFame/deekshitha10C_1.jpg',
+    },
+    {
+      id: 1,
+      studentName: 'Deekshitha Salagundi',
+      class: '10C',
+      achievement:
         'Selected for National Level YIP which will be held in Delhi',
       imageUrl: '../../../assets/hallofFame/deekshitha10C.jpg',
     },

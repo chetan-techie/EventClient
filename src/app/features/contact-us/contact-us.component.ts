@@ -9,23 +9,24 @@ import { ContactusService } from '../../core/services/contactus.service';
 })
 export class ContactUsComponent {
   formData: FormGroup = new FormGroup({
-    Name: new FormControl('', Validators.required),
-    Email: new FormControl('', [Validators.required, Validators.email]),
-    Message: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    message: new FormControl('', Validators.required),
   });
 
   constructor(private contactService: ContactusService) {}
 
   postContact(): any {
     const payload = {
-      Name: this.formData.value.Name as string,
-      Email: this.formData.value.Email as string,
-      Message: this.formData.value.Message as string,
+      name: this.formData.value.name as string,
+      email: this.formData.value.email as string,
+      message: this.formData.value.message as string,
     };
 
     this.contactService.sendMail(payload).subscribe({
       next: (response) => {
         console.log('Mail sent successfully', response);
+        this.formData.reset();
       },
       error: (error) => {
         console.error('Error sending mail', error);

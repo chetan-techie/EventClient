@@ -25,6 +25,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AutoResizeTextDirective } from './custom-directives/auto-text-resize';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     FooterComponent,
     ImgCardComponent,
     SafePipe,
+    AutoResizeTextDirective,
   ],
   imports: [
     BrowserModule,

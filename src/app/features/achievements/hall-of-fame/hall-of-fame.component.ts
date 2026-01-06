@@ -31,6 +31,14 @@ export class HallOfFameComponent implements OnInit {
         studentName: 'Deekshitha Salagundi',
         class: '10C',
         achievement:
+          'Awarded the Certificate of Excellence at the National-level YIP held in Delhi for her outstanding performance and commendable achievement.',
+        imageUrl: '../../../assets/hallofFame/deekshitha10C_1.jpg',
+      },
+      {
+        id: 11,
+        studentName: 'Deekshitha Salagundi',
+        class: '10C',
+        achievement:
           'Selected for National Level Young Indians Parliament (YIP) -2025 which will be held in Delhi.',
         imageUrl: '../../../assets/hallofFame/deekshitha10C.jpg',
       },

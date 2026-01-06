@@ -10,6 +10,6 @@ export class ContactusService {
   constructor(private http: HttpClient) {}
 
   sendMail(payload: any): Observable<any> {
-    return this.http.post(`${baseUrl}/api/contact/ `, payload);
+    return this.http.post(`${baseUrl}/api/contact/send `, payload);
   }
 }
