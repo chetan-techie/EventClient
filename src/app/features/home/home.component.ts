@@ -28,57 +28,116 @@ export class HomeComponent implements OnInit {
   hallOfFameEntries = [
     {
       id: 1,
-      studentName: 'Deekshitha Salagundi',
-      class: '10C',
+      studentName: 'Shravya M',
+      class: '7B',
       achievement:
-        'Awarded Certificate of Excellence at National-level YIP, Delhi for outstanding performance.',
-      imageUrl: '../../../assets/hallofFame/deekshitha10C_1.jpg',
-    },
-    {
-      id: 1,
-      studentName: 'Deekshitha Salagundi',
-      class: '10C',
-      achievement:
-        'Selected for National Level YIP which will be held in Delhi',
-      imageUrl: '../../../assets/hallofFame/deekshitha10C.jpg',
+        'Karnataka State Amature Yoga Sports Association organized Yogasana Sports Championship on 6th and 7th June at Yellapura in which Shravya M of class 7B secured Fourth Place.',
+      imageUrl: '../../../assets/hallofFame/yogasanaShravya7B.jpg',
     },
     {
       id: 2,
-      studentName: 'Vaibhav Vittal',
-      class: '9B',
-      achievement: 'Selected for state level wrestling competition',
-      imageUrl: '../../../assets/hallofFame/vaibhav9b.jpg',
+      studentName: 'Nanaiah C M',
+      class: '8B',
+      achievement:
+        'INTERNATIONAL OKINAWA SHORIN KAI KOBUDO, Bogadi organized International Level Karate Championship on 5th April 2026 in which Nanaiah C M of 8B secured First Rank in Black Belt 1st DAN and completed Kobudo examination successfully.',
+      imageUrl: '../../../assets/hallofFame/nanaiah8B.jpg',
     },
     {
       id: 3,
-      studentName: 'Sushruth',
+      studentName: 'Dhanvitha',
       class: '10C',
-      achievement: 'Selected for state level wrestling competition',
-      imageUrl: '../../../assets/hallofFame/sushruth10C.jpg',
+      achievement:
+        '26th June 2026: Dhanvitha of 10C secured Independent Voice of the House award in the YIP, Quorum Hotel Mysore.',
+      imageUrl: '../../../assets/hallofFame/dhanvitha10C.jpg',
     },
     {
       id: 4,
-      studentName: 'Srujan S',
-      class: '10A',
-      achievement: 'Selected for state level Handball',
-      imageUrl: '../../../assets/hallofFame/srujan10A.jpg',
+      studentName: 'Smt. Amulya H. L',
+      class: 'Faculty',
+      achievement:
+        '5th July 2026: National Level Open Yogasana Sports Championship – 2026. Smt. Amulya H. L represented the school and participated in the championship held at University Yoga Bhavana, Mysuru.',
+      imageUrl: '../../../assets/hallofFame/amulyaFaculty.jpg',
     },
     {
       id: 5,
+      studentName: 'Arnav S & Sanvi A V',
+      class: '8C & 9C',
+      achievement:
+        'JSS Mahavidyapeetha organized Open Day 2026 on 6th June 2026 in which Arnav S of 8C bagged first prize on the theme Health and Sanvi A V of 9C secured first place on the theme Environment.',
+      imageUrl: '../../../assets/hallofFame/arnavSanvi.jpg',
+    },
+    {
+      id: 6,
+      studentName: 'Students',
+      class: '5C, 6C, 5A, 7B',
+      achievement:
+        'Adhya Gangamma of 5C, Dhyuthishree D. of 6C and Bhuvana Santhosh of 5A secured Distinction and Kaveri M. of 7B secured I class in the Bharatanatyam Examination conducted by Akhila Bharatiya Gandharva Mahavidyalaya Mandal, Mumbai.',
+      imageUrl: '../../../assets/hallofFame/bhartanatyamfeb26.jpg',
+    },
+    {
+      id: 7,
+      studentName: 'Arnav S',
+      class: '7 STD',
+      achievement:
+        'Took part in the Viksit Bharat Buildathon (VBB) 2025 and successfully submitted an innovative idea/prototype addressing real-world community challenges. He has successfully completed the Design Thinking & Innovation Course as part of School Innovation Marathon 2025-26.',
+      imageUrl: '../../../assets/hallofFame/ArnavS.jpg',
+    },
+    {
+      id: 8,
+      studentName: 'Deekshitha Salagundi',
+      class: '10C',
+      achievement:
+        'Awarded the Certificate of Excellence at the National-level YIP held in Delhi for her outstanding performance and commendable achievement.',
+      imageUrl: '../../../assets/hallofFame/deekshitha10C_1.jpg',
+    },
+    {
+      id: 9,
+      studentName: 'Deekshitha Salagundi',
+      class: '10C',
+      achievement:
+        'Selected for National Level Young Indians Parliament (YIP) -2025 which will be held in Delhi.',
+      imageUrl: '../../../assets/hallofFame/deekshitha10C.jpg',
+    },
+    {
+      id: 10,
+      studentName: 'Vaibhav Vittal',
+      class: '9B',
+      achievement:
+        'Selected for state level wrestling competition - 2025 organised by : Department of Physical Education.',
+      imageUrl: '../../../assets/hallofFame/vaibhav9b.jpg',
+    },
+    {
+      id: 11,
+      studentName: 'Sushruth',
+      class: '10C',
+      achievement:
+        'Selected for state level wrestling competition - 2025. Organised by : Department of Physical Education',
+      imageUrl: '../../../assets/hallofFame/sushruth10C.jpg',
+    },
+    {
+      id: 12,
+      studentName: 'Srujan S',
+      class: '10A',
+      achievement:
+        'Selected for state level Handball-2025. Organised by : Department of Physical Education',
+      imageUrl: '../../../assets/hallofFame/srujan10A.jpg',
+    },
+    {
+      id: 13,
       studentName: 'Gowrishree S',
       class: '9C',
       achievement: 'Group Level Best Cadet in NCC 3 Kar Battalion',
       imageUrl: '../../../assets/hallofFame/thumbnail1.jpg',
     },
     {
-      id: 6,
+      id: 14,
       studentName: 'Pareekshith Raj P',
       class: '8C',
       achievement: 'Bagged prizes in Bhagavad Gita and Singing Competitions',
       imageUrl: '../../../assets/hallofFame/thumbnail2.jpg',
     },
     {
-      id: 7,
+      id: 15,
       studentName: 'Pranamya Prasad',
       class: '8C',
       achievement: 'Bagged prizes in Karate Competitions',
@@ -89,7 +148,10 @@ export class HomeComponent implements OnInit {
   swiper: any = {};
   isLoading: boolean = true;
 
-  constructor(private router: Router, private es: EventsService) {
+  constructor(
+    private router: Router,
+    private es: EventsService,
+  ) {
     this.getEvents();
     this.swiper = new Swiper('.swipertag', {
       slidesPerView: 1,
@@ -131,7 +193,7 @@ export class HomeComponent implements OnInit {
     const priority = Math.floor(Math.random() * 2) + 1;
 
     this.testimonials = Testimonials.filter(
-      (testimonial) => testimonial.priority === priority
+      (testimonial) => testimonial.priority === priority,
     );
   }
 
@@ -146,7 +208,7 @@ export class HomeComponent implements OnInit {
         .filter((e: any) => e.eventType === 'image')
         .sort(
           (a: any, b: any) =>
-            new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime()
+            new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime(),
         )
         .slice(0, 3);
 
@@ -154,7 +216,7 @@ export class HomeComponent implements OnInit {
         .filter((e: any) => e.eventType === 'video' && e.active)
         .sort(
           (a: any, b: any) =>
-            new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime()
+            new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime(),
         )
         .slice(0, 3);
     });

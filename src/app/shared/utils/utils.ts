@@ -83,11 +83,6 @@ export const Testimonials = [
 
 export const leaders = [
   {
-    name: 'Dr. K. B. Ganapathy',
-    designation: 'Ex-Chairman',
-    profile: 'Sri K B Ganapathy',
-  },
-  {
     name: 'Dr. C. Naganna',
     designation: 'Chairman',
     profile: 'Dr. C. Naganna',
@@ -389,23 +384,23 @@ export const faculty = [
 export const nonFaculty = [
   {
     designation: 'Administrative Officer',
-    name: 'Ravikumar S. R.',
+    name: 'Sri Ravikumar S. R.',
   },
   {
     designation: 'Accounts Officer',
-    name: ' Smt. Shruthi BP',
+    name: 'Sri Shreyas H V',
   },
   {
     designation: 'Office Assistants',
-    name: ' Sri Prakash K. V. ; Smt. Chandrakala S. N; Kum. Shreeraksha P.; Smt. Thejashwini',
+    name: 'Sri Prakash K. V.; Smt. Chandrakala S. N; Kum. Shreeraksha P.; Smt. Thejashwini',
   },
   {
     designation: 'Teacher Assistants',
-    name: ' Smt. Shobha R.; Smt. Jayalakshmi R. ; Smt. Savitha M.; Smt. Chaya M.; Smt. Leelavathi C.B.; Smt. Arathi.',
+    name: 'Smt. Savitha; Smt. Chaya; Smt. Leelavathi C.B; Smt. Jayalakshmi; Smt. Arathi; Smt. Shobha',
   },
   {
     designation: 'Library Assistant',
-    name: 'Smt. Girija ',
+    name: 'Smt. Girija',
   },
 ];
 
@@ -413,58 +408,58 @@ export const busdrivers = [
   {
     routeno: 1,
     busno: 'KA09 C 4753',
-    driver: 'Kaverappa',
-    mob: 8105251633,
-    destination: 'KHB',
+    driver: 'Kumar S',
+    mob: 9535862462,
+    destination: 'KHB Colony',
   },
   {
     routeno: 2,
     busno: 'KA09 C 4752',
-    driver: 'Sudharshan',
-    mob: 8971664429,
-    destination: 'FTS / Bannimnatap',
+    driver: 'Krishna',
+    mob: 7411031338,
+    destination: 'Hebbal / Bannimantap & FTS',
   },
   {
     routeno: 3,
     busno: 'KA09 AA 4649',
-    driver: 'Madhusudhan',
+    driver: 'C Madhusudhan',
     mob: 9036516555,
     destination: 'KRS',
   },
   {
     routeno: 4,
     busno: 'KA09 C 4754',
-    driver: 'Eshwar',
-    mob: 9448609063,
-    destination: 'Hebbal',
+    driver: 'Sudarshan',
+    mob: 8971664429,
+    destination: 'J P Nagar / Shanthala',
   },
   {
     routeno: 5,
     busno: 'KA09 C 7902',
     driver: 'Chandra Nayak',
     mob: 8660610956,
-    destination: 'Belikere',
+    destination: 'Bilikeri',
   },
   {
     routeno: 6,
     busno: 'KA09 D 4470',
-    driver: 'Jayaram',
+    driver: 'Jayaramu',
     mob: 9731514070,
-    destination: 'Kuvempu Nagar/ Bogadi',
+    destination: 'Kuvempunagar',
   },
   {
     routeno: 7,
-    busno: 'KA09 C 0577',
-    driver: 'Mahadev',
-    mob: 9741321577,
-    destination: 'JP Nagar',
+    busno: 'KA09 AC 8107',
+    driver: 'Kaverappa',
+    mob: 8105251633,
+    destination: 'Gungral Chatra / Megalapura',
   },
 ];
 
 function getRandomIndices(arr: Array<any>, numIndices: number) {
   if (numIndices > arr.length) {
     throw new Error(
-      'numIndices cannot be greater than the length of the array'
+      'numIndices cannot be greater than the length of the array',
     );
   }
   let indices: Array<number> = [];

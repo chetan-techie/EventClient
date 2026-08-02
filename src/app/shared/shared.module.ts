@@ -27,6 +27,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AutoResizeTextDirective } from './custom-directives/auto-text-resize';
 
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     CardsTileComponent,
@@ -59,6 +62,8 @@ import { AutoResizeTextDirective } from './custom-directives/auto-text-resize';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTooltipModule,
+    MatPaginatorModule,
   ],
   exports: [
     BrowserModule,
@@ -85,6 +90,8 @@ import { AutoResizeTextDirective } from './custom-directives/auto-text-resize';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTooltipModule,
+    MatPaginatorModule,
   ],
 })
 export class SharedModule {}

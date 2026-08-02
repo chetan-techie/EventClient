@@ -1,3 +1,51 @@
-<div class="container">
+<div class="admin-container">
+  <div class="analytics-dashboard">
+    <div class="stats-grid">
+      <!-- Main Hit Counter Card -->
+      <div class="stat-card featured-card">
+        <div class="card-background">
+          <div class="floating-circle circle-1"></div>
+          <div class="floating-circle circle-2"></div>
+          <div class="floating-circle circle-3"></div>
+        </div>
+
+        <div class="card-header">
+          <div class="icon-wrapper pulse">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <div class="card-label">
+            <span class="label-text">Total Visitors</span>
+            <span class="live-indicator">
+              <span class="pulse-dot"></span>
+              Live
+            </span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="counter-display" *ngIf="!loading">
+            <div class="mini-icon">🌍</div>
+            <span class="counter-number">{{ animatedCount | number }}</span>
+            <span class="counter-suffix">views</span>
+          </div>
+          <div class="loading-state" *ngIf="loading">
+            <div class="spinner"></div>
+            <span>Loading data...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <router-outlet></router-outlet>
 </div>

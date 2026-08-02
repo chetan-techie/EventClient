@@ -1,0 +1,98 @@
+<!-- Compact Banner for Home Page Top -->
+<div class="announcement-banner" *ngIf="isVisible && announcements.length > 0">
+  <div class="banner-container">
+    <div class="banner-content">
+      <!-- Icon -->
+      <div class="banner-icon">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+          />
+        </svg>
+      </div>
+
+      <!-- Announcement Info -->
+      <div class="banner-info" *ngIf="getCurrentAnnouncement() as announcement">
+        <div class="banner-header">
+          <span class="banner-badge" *ngIf="announcement.pinned">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M16 12V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"
+              />
+            </svg>
+            Pinned
+          </span>
+          <span class="banner-label">Latest Announcement</span>
+          <span class="banner-time">{{
+            getTimeAgo(announcement.publishedAt)
+          }}</span>
+        </div>
+
+        <div class="banner-text">
+          <h3 class="banner-title">{{ announcement.title }}</h3>
+          <p class="banner-description">
+            {{ getTruncatedContent(announcement.content, 120) }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation Dots (if multiple announcements) -->
+      <div class="banner-dots" *ngIf="announcements.length > 1">
+        <button
+          *ngFor="let announcement of announcements; let i = index"
+          class="dot"
+          [class.active]="i === currentIndex"
+          (click)="goToIndex(i)"
+          [attr.aria-label]="'View announcement ' + (i + 1)"
+        ></button>
+      </div>
+
+      <!-- Actions -->
+      <div class="banner-actions">
+        <button class="view-all-btn" (click)="viewAllAnnouncements()">
+          View All
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <button
+          class="close-btn"
+          (click)="dismiss()"
+          aria-label="Dismiss banner"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress bar for auto-rotation -->
+    <div class="progress-bar" *ngIf="announcements.length > 1">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>

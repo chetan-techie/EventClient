@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { baseUrl } from '../../shared/utils/utils';
 
 export interface TestimonialRequest {
+  type: string;
   name: string;
-  graduationYear: number;
-  course: string;
   email: string;
+  anonymous: boolean;
   message: string;
   rating: number;
-  photo?: File;
 }
 
 export interface FeedbackRequest {
@@ -49,7 +49,7 @@ export interface FeedbackResponse {
   providedIn: 'root',
 })
 export class FeedbackService {
-  private readonly apiUrl = environment.apiUrl || 'https://api.yourschool.edu';
+  private readonly apiUrl = baseUrl || 'https://api.yourschool.edu';
   private testimonialsSubject = new BehaviorSubject<TestimonialResponse[]>([]);
   public testimonials$ = this.testimonialsSubject.asObservable();
 
@@ -61,19 +61,9 @@ export class FeedbackService {
   submitTestimonial(
     testimonialData: TestimonialRequest
   ): Observable<FeedbackResponse> {
-    const formData = new FormData();
-
-    Object.keys(testimonialData).forEach((key) => {
-      if (key === 'photo' && testimonialData.photo) {
-        formData.append('photo', testimonialData.photo);
-      } else if (key !== 'photo') {
-        formData.append(key, (testimonialData as any)[key].toString());
-      }
-    });
-
     return this.http.post<FeedbackResponse>(
-      `${this.apiUrl}/testimonials`,
-      formData,
+      `${this.apiUrl}/api/feedback/`,
+      testimonialData,
       {
         headers: new HttpHeaders({
           Accept: 'application/json',
@@ -101,9 +91,7 @@ export class FeedbackService {
     page: number = 1,
     limit: number = 10
   ): Observable<TestimonialResponse[]> {
-    return this.http.get<TestimonialResponse[]>(
-      `${this.apiUrl}/testimonials?page=${page}&limit=${limit}&status=approved`
-    );
+    return this.http.get<TestimonialResponse[]>(`${this.apiUrl}/api/feedback/`);
   }
 
   // Get featured testimonials

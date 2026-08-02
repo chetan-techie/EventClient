@@ -1,4 +1,5 @@
 <!-- <app-announcement></app-announcement> -->
+<app-announcement-banner></app-announcement-banner>
 <section class="carousel d-flex">
   <div class="welcmeMsg">
     <h1 class="display-1 font-weight-bold">Bhavan’s Education</h1>
@@ -184,30 +185,7 @@
       <h2 class="bottom-line text-left all-caps">Welcome Message</h2>
     </div>
     <div class="row pb-3" #cardContainer>
-      <div class="col-lg-3 mb-4 border-0 shadow-sm">
-        <div class="card mb-2 pt-4">
-          <img
-            class="card-img-top mb-2"
-            src="../../../assets/photos/leaders/Sri K B Ganapathy.jpg"
-            alt=""
-          />
-          <div class="card-body text-center p-4">
-            <h4 class="committeMember">Dr. K. B. Ganapathy</h4>
-            <div class="d-flex justify-content-center mb-3">
-              <small class="mr-3"
-                ><i class="fa fa-user text-primary"></i>Ex-Chairman</small
-              >
-            </div>
-            <p>
-              The Bhavans firmly believes that revitalizing ancient values and
-              reintegrating them to suit the changing needs of modern times
-              alone will give people the strength to assimilate the good in the
-              new.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 mb-4 border-0 shadow-sm">
+      <div class="col-lg-4 mb-4 border-0 shadow-sm">
         <div class="card mb-2 pt-4">
           <img
             class="card-img-top mb-2"
@@ -229,7 +207,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 mb-4 border-0 shadow-sm">
+      <div class="col-lg-4 mb-4 border-0 shadow-sm">
         <div class="card mb-2 pt-4">
           <img
             class="card-img-top mb-2"
@@ -253,7 +231,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 mb-4 border-0 shadow-sm">
+      <div class="col-lg-4 mb-4 border-0 shadow-sm">
         <div class="card mb-2 pt-4">
           <img
             class="card-img-top mb-2"
@@ -369,7 +347,7 @@
       <div *ngIf="event.eventType === 'video'" class="video-event-card">
         <div class="video-container">
           <iframe
-            [src]="getYouTubeEmbedUrl(event.eventURL) | safe : 'resourceUrl'"
+            [src]="getYouTubeEmbedUrl(event.eventURL) | safe: 'resourceUrl'"
             frameborder="0"
             allowfullscreen
             class="video-player"
@@ -380,7 +358,7 @@
           <h3 class="event-title">{{ event.name }}</h3>
           <p class="event-date">
             <mat-icon class="date-icon">date_range</mat-icon>
-            {{ event.eventDate | date : "mediumDate" }}
+            {{ event.eventDate | date: "mediumDate" }}
           </p>
         </mat-card-content>
       </div>

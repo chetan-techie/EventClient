@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventsService } from './core/services/events.service';
 
 interface WeatherForecast {
   date: string;
@@ -24,7 +25,11 @@ export class AppComponent implements OnInit {
     );
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private eventsService: EventsService) {
+    eventsService.incrementVisitCount().subscribe((count) => {
+      console.log('Visit count:', count);
+    });
+  }
 
   isButtonVisible = false; // Variable to toggle button visibility
 

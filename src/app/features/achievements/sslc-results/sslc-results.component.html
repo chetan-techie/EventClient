@@ -1,8 +1,16 @@
-<div class="container mt-2">
+<!-- <div class="container mt-2">
   <div class="mb-2">
     <img
       src="../../../../assets/achievements/sslc_result_2025.jpg"
       class="img-fluid"
     />
   </div>
+</div> -->
+<div class="container pdf-container mt-2">
+  <pdf-viewer
+    [src]="'../../../../assets/achievements/sslcresults-25-26.pdf'"
+    [render-text]="true"
+    [original-size]="false"
+    style="display: block"
+  ></pdf-viewer>
 </div>

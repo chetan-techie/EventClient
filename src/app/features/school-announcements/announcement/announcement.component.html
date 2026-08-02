@@ -1,0 +1,192 @@
+<div class="announcement-section" *ngIf="announcements.length > 0">
+  <div class="announcement-header">
+    <div class="header-content">
+      <div class="header-icon">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+          />
+        </svg>
+      </div>
+      <h2 class="section-title">Latest Announcements</h2>
+    </div>
+    <div class="header-decoration"></div>
+  </div>
+
+  <div class="announcements-container">
+    <!-- Pinned Announcements -->
+    <div
+      class="announcement-card pinned"
+      *ngFor="let announcement of pinnedAnnouncements"
+    >
+      <div class="card-header">
+        <div class="pinned-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M16 12V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"
+            />
+          </svg>
+          <span>Pinned</span>
+        </div>
+        <button
+          class="close-btn"
+          (click)="closeAnnouncement(announcement.id)"
+          aria-label="Dismiss announcement"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <h3 class="announcement-title">{{ announcement.title }}</h3>
+      <p class="announcement-content">{{ announcement.content }}</p>
+
+      <div class="announcement-footer">
+        <div class="footer-left">
+          <span class="timestamp">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            {{ getTimeAgo(announcement.publishedAt) }}
+          </span>
+        </div>
+        <div
+          class="expiry-badge"
+          *ngIf="getDaysUntilExpiry(announcement.expiresAt) <= 7"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          Expires in {{ getDaysUntilExpiry(announcement.expiresAt) }} days
+        </div>
+      </div>
+    </div>
+
+    <!-- Regular Announcements -->
+    <div
+      class="announcement-card"
+      *ngFor="let announcement of regularAnnouncements"
+    >
+      <div class="card-header">
+        <div class="date-badge">
+          <span class="date-day">{{
+            announcement.publishedAt | date : "dd"
+          }}</span>
+          <span class="date-month">{{
+            announcement.publishedAt | date : "MMM"
+          }}</span>
+        </div>
+        <button
+          class="close-btn"
+          (click)="closeAnnouncement(announcement.id)"
+          aria-label="Dismiss announcement"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <h3 class="announcement-title">{{ announcement.title }}</h3>
+      <p class="announcement-content">{{ announcement.content }}</p>
+
+      <div class="announcement-footer">
+        <div class="footer-left">
+          <span class="timestamp">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            {{ getTimeAgo(announcement.publishedAt) }}
+          </span>
+        </div>
+        <div
+          class="expiry-badge"
+          *ngIf="getDaysUntilExpiry(announcement.expiresAt) <= 7"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          Expires in {{ getDaysUntilExpiry(announcement.expiresAt) }} days
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- View More Button -->
+  <div class="view-more-container" *ngIf="announcements.length > 3">
+    <button class="view-more-btn" (click)="toggleShowAll()">
+      <span>{{
+        showAllAnnouncements ? "Show Less" : "View All Announcements"
+      }}</span>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        [class.rotated]="showAllAnnouncements"
+      >
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+    </button>
+  </div>
+</div>

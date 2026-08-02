@@ -24,6 +24,14 @@ export class EventsService {
 
   constructor(private http: HttpClient) {}
 
+  getVisitCount(): Observable<number> {
+    return this.http.get<number>(`${baseUrl}/api/hitsOnly`);
+  }
+
+  incrementVisitCount(): Observable<number> {
+    return this.http.get<number>(`${baseUrl}/api/hits`);
+  }
+
   getEvents(): Observable<SchoolEvent[]> {
     return this.http.get<SchoolEvent[]>(this.apiUrl);
   }

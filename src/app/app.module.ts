@@ -9,7 +9,6 @@ import { SharedModule } from './shared/shared.module';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { FeaturesModule } from './features/features.module';
 import { HomeComponent } from './features/home/home.component';
-import { AnnouncementComponent } from './features/announcement/announcement.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { VisionClassesComponent } from './features/kalabharati/vision-classes/vision-classes.component';
@@ -18,14 +17,15 @@ import { ArtPaintingComponent } from './features/kalabharati/art-painting/art-pa
 import { MusicInstrumentsComponent } from './features/kalabharati/music-instruments/music-instruments.component';
 import { JyotishaComponent } from './features/kalabharati/jyotisha/jyotisha.component';
 import { AuthInterceptor } from './core/interceptors/authInterceptor';
+import { AnnouncementBannerComponent } from './features/school-announcements/announcement-banner/announcement-banner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MaintenanceComponent,
     HomeComponent,
-    AnnouncementComponent,
     HeaderComponent,
+    AnnouncementBannerComponent,
     DanceMusicComponent,
     ArtPaintingComponent,
     MusicInstrumentsComponent,
@@ -55,6 +55,5 @@ import { AuthInterceptor } from './core/interceptors/authInterceptor';
     },
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

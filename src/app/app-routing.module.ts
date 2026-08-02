@@ -8,7 +8,6 @@ import { ParentsComponent } from './features/parents/parents.component';
 import { CurricularComponent } from './features/curricular/curricular.component';
 import { AdminComponent } from './features/admin/admin.component';
 import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
-import { AnnouncementPageComponent } from './features/announcement-page/announcement-page.component';
 import { MandatoryDisclosureComponent } from './features/mandatory-disclosure/mandatory-disclosure.component';
 import { KalabharatiComponent } from './features/kalabharati/kalabharati.component';
 import { HallOfFameComponent } from './features/achievements/hall-of-fame/hall-of-fame.component';
@@ -26,10 +25,11 @@ import { EventsAdminComponent } from './features/admin/components/new-events-adm
 import { LoginComponent } from './features/admin-login/new-form/admin-login.component';
 import { AdminRouteGuard } from './core/guards/auth.guard';
 import { LoginGuard } from './core/guards/login.guard';
-import { NewAnnouncementPageComponent } from './features/announcement-page/new-announcement-admin/new-annoucement-admin.component';
 import { EventsVideoComponent } from './features/events-video/events-video.component';
 import { FeedbackSystemComponent } from './features/feedback/feedback-system/feedback-system.component';
 import { MonthlyReportsComponent } from './features/monthly-reports/monthly-reports.component';
+import { FeedbackAdminComponent } from './features/admin/components/feedback-admin/feedback-admin.component';
+import { AnnouncementComponent } from './features/school-announcements/announcement/announcement.component';
 
 const routes: Routes = [
   {
@@ -89,6 +89,10 @@ const routes: Routes = [
     component: EventsVideoComponent,
   },
   {
+    path: 'announcements',
+    component: AnnouncementComponent,
+  },
+  {
     path: 'reports',
     component: MonthlyReportsComponent,
   },
@@ -125,12 +129,12 @@ const routes: Routes = [
         canActivate: [LoginGuard],
       },
       {
-        path: 'announcements',
-        component: NewAnnouncementPageComponent,
-      },
-      {
         path: 'dashboard',
         component: EventsAdminComponent,
+      },
+      {
+        path: 'feedback-admin',
+        component: FeedbackAdminComponent,
       },
       {
         path: '',

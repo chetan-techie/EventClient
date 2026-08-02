@@ -298,14 +298,16 @@
   padding: 0 !important;
 }
 .card-list .card-item .card-link {
-  user-select: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 18px;
   border-radius: 12px;
   text-decoration: none;
   border: 1px solid transparent;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-  transition: 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  user-select: none;
 }
 
 .card-list .card-link .card-image {
@@ -330,6 +332,14 @@
   border-radius: 50px;
   line-height: normal;
 } */
+.card-list {
+  padding: 0 !important;
+  height: 100%;
+}
+.card-list .card-item {
+  list-style: none;
+  height: 100%;
+}
 .card-list .card-link .card-title {
   /* color: #5372f0 !important; */
   font-size: 1.19rem;
@@ -366,6 +376,12 @@ swiper-slide img {
   cursor: pointer;
   margin-bottom: 5px;
 }
+.img-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 15px;
+}
 .img-content h2 {
   font-size: 2vm;
   color: var(--orange);
@@ -374,7 +390,7 @@ swiper-slide img {
   height: 30px;
 }
 .img-content p {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--main-blue);
   margin: 5px;
   min-height: 50px;
@@ -629,4 +645,15 @@ small {
   width: 16px;
   height: 16px;
   margin-right: 4px;
+}
+
+/* Ensure columns have equal height */
+.row.pb-3 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row.pb-3 > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
 }

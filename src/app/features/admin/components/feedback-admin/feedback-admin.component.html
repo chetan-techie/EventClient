@@ -1,0 +1,461 @@
+<div class="feedback-admin-container">
+  <!-- Header -->
+  <div class="header-section">
+    <h1 class="page-title">
+      <mat-icon>feedback</mat-icon>
+      Feedback Management
+    </h1>
+    <div class="header-stats">
+      <div class="stat-card">
+        <mat-icon>pending_actions</mat-icon>
+        <div class="stat-info">
+          <span class="stat-number">{{ pendingFeedbackCount }}</span>
+          <span class="stat-label">Pending</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <mat-icon>verified</mat-icon>
+        <div class="stat-info">
+          <span class="stat-number">{{ approvedFeedbackCount }}</span>
+          <span class="stat-label">Approved</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <mat-tab-group
+    [(selectedIndex)]="selectedTab"
+    (selectedTabChange)="onTabChange($event)"
+    class="feedback-tabs"
+  >
+    <mat-tab *ngFor="let tab of tabs; let i = index" [label]="tab.label">
+      <ng-template matTabLabel>
+        <mat-icon>{{ tab.icon }}</mat-icon>
+        <span class="tab-label-text">{{ tab.label }}</span>
+        <span
+          class="tab-badge"
+          *ngIf="tab.filter === 'pending' && pendingFeedbackCount > 0"
+        >
+          {{ pendingFeedbackCount }}
+        </span>
+      </ng-template>
+
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <!-- Toolbar with Search and View Toggle -->
+          <div class="content-toolbar" *ngIf="!isLoading">
+            <div class="search-container">
+              <mat-form-field appearance="outline" class="search-field">
+                <mat-label>Search feedback</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="searchQuery"
+                  (ngModelChange)="onSearchChange($event)"
+                  placeholder="Search by name, email, or message"
+                />
+                <mat-icon matPrefix>search</mat-icon>
+                <button
+                  mat-icon-button
+                  matSuffix
+                  *ngIf="searchQuery"
+                  (click)="clearSearch()"
+                >
+                  <mat-icon>clear</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class="toolbar-actions">
+              <div class="results-info">
+                <span class="results-text">
+                  {{ totalItems }} {{ totalItems === 1 ? "result" : "results" }}
+                </span>
+              </div>
+
+              <button
+                mat-icon-button
+                [matTooltip]="
+                  viewMode === 'grid'
+                    ? 'Switch to List View'
+                    : 'Switch to Grid View'
+                "
+                (click)="toggleViewMode()"
+                class="view-toggle-btn"
+              >
+                <mat-icon>{{
+                  viewMode === "grid" ? "view_list" : "view_module"
+                }}</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div *ngIf="isLoading" class="loading-container">
+            <mat-spinner diameter="50"></mat-spinner>
+            <p>Loading feedback...</p>
+          </div>
+
+          <!-- Grid View -->
+          <div
+            *ngIf="
+              !isLoading && paginatedFeedbacks.length > 0 && viewMode === 'grid'
+            "
+            class="feedback-grid"
+          >
+            <mat-card
+              *ngFor="let feedback of paginatedFeedbacks"
+              class="feedback-card"
+              [class.selected]="selectedFeedback?.id === feedback.id"
+              (click)="viewFeedbackDetails(feedback)"
+            >
+              <!-- Card Header -->
+              <div class="feedback-header">
+                <div class="user-info">
+                  <mat-icon class="user-avatar">{{
+                    getTypeIcon(feedback.type)
+                  }}</mat-icon>
+                  <div class="user-details">
+                    <h3 class="user-name">{{ feedback.name }}</h3>
+                    <p class="user-email">{{ feedback.email }}</p>
+                  </div>
+                </div>
+                <mat-chip [class]="getTypeBadgeClass(feedback.type)">
+                  {{ feedback.type }}
+                </mat-chip>
+              </div>
+
+              <!-- Card Content -->
+              <mat-card-content>
+                <p class="feedback-message">{{ feedback.message }}</p>
+
+                <!-- Rating -->
+                <div class="rating-container">
+                  <mat-icon
+                    *ngFor="let filled of getStarArray(feedback.rating)"
+                    [class.filled]="filled"
+                    class="star-icon"
+                  >
+                    {{ filled ? "star" : "star_border" }}
+                  </mat-icon>
+                  <span class="rating-text">{{ feedback.rating }}/5</span>
+                </div>
+
+                <!-- Status and Actions -->
+                <div class="card-footer">
+                  <div class="status-container">
+                    <mat-chip
+                      [class]="
+                        feedback.verified ? 'status-approved' : 'status-pending'
+                      "
+                    >
+                      <mat-icon>{{
+                        feedback.verified ? "verified" : "pending"
+                      }}</mat-icon>
+                      {{ feedback.verified ? "Approved" : "Pending" }}
+                    </mat-chip>
+                  </div>
+
+                  <div class="action-buttons">
+                    <button
+                      mat-icon-button
+                      *ngIf="!feedback.verified"
+                      color="primary"
+                      matTooltip="Approve"
+                      (click)="approveFeedback(feedback, $event)"
+                    >
+                      <mat-icon>check_circle</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      *ngIf="feedback.verified"
+                      color="accent"
+                      matTooltip="Unapprove"
+                      (click)="rejectFeedback(feedback, $event)"
+                    >
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      color="warn"
+                      matTooltip="Delete"
+                      (click)="deleteFeedback(feedback.id, $event)"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- List View -->
+          <div
+            *ngIf="
+              !isLoading && paginatedFeedbacks.length > 0 && viewMode === 'list'
+            "
+            class="feedback-list"
+          >
+            <mat-card
+              *ngFor="let feedback of paginatedFeedbacks"
+              class="feedback-list-item"
+              [class.selected]="selectedFeedback?.id === feedback.id"
+              (click)="viewFeedbackDetails(feedback)"
+            >
+              <div class="list-item-content">
+                <div class="list-item-left">
+                  <mat-icon class="list-avatar">{{
+                    getTypeIcon(feedback.type)
+                  }}</mat-icon>
+                  <div class="list-details">
+                    <div class="list-header-row">
+                      <h3 class="list-name">{{ feedback.name }}</h3>
+                      <mat-chip
+                        [class]="getTypeBadgeClass(feedback.type)"
+                        class="list-type-chip"
+                      >
+                        {{ feedback.type }}
+                      </mat-chip>
+                    </div>
+                    <p class="list-email">{{ feedback.email }}</p>
+                    <p class="list-message">{{ feedback.message }}</p>
+                    <div class="list-meta">
+                      <div class="rating-container">
+                        <mat-icon
+                          *ngFor="let filled of getStarArray(feedback.rating)"
+                          [class.filled]="filled"
+                          class="star-icon small"
+                        >
+                          {{ filled ? "star" : "star_border" }}
+                        </mat-icon>
+                        <span class="rating-text">{{ feedback.rating }}/5</span>
+                      </div>
+                      <mat-chip
+                        [class]="
+                          feedback.verified
+                            ? 'status-approved'
+                            : 'status-pending'
+                        "
+                        class="list-status-chip"
+                      >
+                        <mat-icon>{{
+                          feedback.verified ? "verified" : "pending"
+                        }}</mat-icon>
+                        {{ feedback.verified ? "Approved" : "Pending" }}
+                      </mat-chip>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-item-actions">
+                  <button
+                    mat-icon-button
+                    *ngIf="!feedback.verified"
+                    color="primary"
+                    matTooltip="Approve"
+                    (click)="approveFeedback(feedback, $event)"
+                  >
+                    <mat-icon>check_circle</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    *ngIf="feedback.verified"
+                    color="accent"
+                    matTooltip="Unapprove"
+                    (click)="rejectFeedback(feedback, $event)"
+                  >
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    matTooltip="Delete"
+                    (click)="deleteFeedback(feedback.id, $event)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+
+          <!-- Empty State -->
+          <div
+            *ngIf="!isLoading && paginatedFeedbacks.length === 0"
+            class="empty-state"
+          >
+            <mat-icon class="empty-icon">
+              {{ searchQuery ? "search_off" : tabs[selectedTab].icon }}
+            </mat-icon>
+            <h2>
+              {{
+                searchQuery
+                  ? "No Results Found"
+                  : "No " + tabs[selectedTab].label + " Found"
+              }}
+            </h2>
+            <p *ngIf="searchQuery">
+              Try adjusting your search criteria or
+              <a (click)="clearSearch()" class="clear-link">clear search</a>
+            </p>
+            <p *ngIf="!searchQuery">
+              There are no feedback submissions in this category yet.
+            </p>
+          </div>
+
+          <!-- Pagination -->
+          <div
+            *ngIf="!isLoading && filteredFeedbacks.length > 0"
+            class="pagination-container"
+          >
+            <mat-paginator
+              [length]="totalItems"
+              [pageSize]="pageSize"
+              [pageIndex]="pageIndex"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="onPageChange($event)"
+              showFirstLastButtons
+            >
+            </mat-paginator>
+          </div>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- Feedback Details Modal -->
+  <div
+    class="modal-overlay"
+    *ngIf="viewDetailsModal"
+    (click)="closeDetailsModal()"
+  >
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <mat-card class="details-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>info</mat-icon>
+            Feedback Details
+          </mat-card-title>
+          <button
+            mat-icon-button
+            class="close-button"
+            (click)="closeDetailsModal()"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-card-header>
+
+        <mat-card-content *ngIf="selectedFeedback">
+          <div class="details-section">
+            <div class="detail-row">
+              <span class="detail-label">
+                <mat-icon>{{ getTypeIcon(selectedFeedback.type) }}</mat-icon>
+                Type
+              </span>
+              <mat-chip [class]="getTypeBadgeClass(selectedFeedback.type)">
+                {{ selectedFeedback.type }}
+              </mat-chip>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">
+                <mat-icon>person</mat-icon>
+                Name
+              </span>
+              <span class="detail-value">{{ selectedFeedback.name }}</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">
+                <mat-icon>email</mat-icon>
+                Email
+              </span>
+              <span class="detail-value">{{ selectedFeedback.email }}</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">
+                <mat-icon>star</mat-icon>
+                Rating
+              </span>
+              <div class="rating-container">
+                <mat-icon
+                  *ngFor="let filled of getStarArray(selectedFeedback.rating)"
+                  [class.filled]="filled"
+                  class="star-icon"
+                >
+                  {{ filled ? "star" : "star_border" }}
+                </mat-icon>
+                <span class="rating-text">{{ selectedFeedback.rating }}/5</span>
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">
+                <mat-icon>{{
+                  selectedFeedback.verified ? "verified" : "pending"
+                }}</mat-icon>
+                Status
+              </span>
+              <mat-chip
+                [class]="
+                  selectedFeedback.verified
+                    ? 'status-approved'
+                    : 'status-pending'
+                "
+              >
+                {{
+                  selectedFeedback.verified ? "Approved" : "Pending Approval"
+                }}
+              </mat-chip>
+            </div>
+
+            <div class="detail-row full-width">
+              <span class="detail-label">
+                <mat-icon>message</mat-icon>
+                Message
+              </span>
+              <p class="message-content">{{ selectedFeedback.message }}</p>
+            </div>
+          </div>
+
+          <!-- Modal Actions -->
+          <div class="modal-actions">
+            <button mat-button (click)="closeDetailsModal()" class="cancel-btn">
+              <mat-icon>close</mat-icon>
+              Close
+            </button>
+            <button
+              mat-raised-button
+              *ngIf="!selectedFeedback.verified"
+              color="primary"
+              (click)="approveFeedback(selectedFeedback); closeDetailsModal()"
+              class="approve-btn"
+            >
+              <mat-icon>check_circle</mat-icon>
+              Approve
+            </button>
+            <button
+              mat-raised-button
+              *ngIf="selectedFeedback.verified"
+              color="accent"
+              (click)="rejectFeedback(selectedFeedback); closeDetailsModal()"
+              class="reject-btn"
+            >
+              <mat-icon>cancel</mat-icon>
+              Unapprove
+            </button>
+            <button
+              mat-stroked-button
+              color="warn"
+              (click)="deleteFeedback(selectedFeedback.id); closeDetailsModal()"
+              class="delete-btn"
+            >
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

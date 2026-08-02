@@ -25,8 +25,8 @@ import { EventsModule } from './admin/components/new-events-admin/module_imports
 import { EventsVideoComponent } from './events-video/events-video.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FeedbackSystemModule } from './feedback/feedback-system.module';
-import { AnnouncementModule } from './announcement-page/announcement.module';
 import { MonthlyReportsComponent } from './monthly-reports/monthly-reports.component';
+import { SchoolAnnouncementModule } from './school-announcements/school-announcement.module';
 
 @NgModule({
   declarations: [
@@ -53,14 +53,12 @@ import { MonthlyReportsComponent } from './monthly-reports/monthly-reports.compo
   ],
   imports: [
     SharedModule,
-    KalabharatiModule,
     FormsModule,
     ReactiveFormsModule,
     EventsModule,
     PdfViewerModule,
     FeedbackSystemModule,
-    AnnouncementModule,
+    SchoolAnnouncementModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class FeaturesModule {}
